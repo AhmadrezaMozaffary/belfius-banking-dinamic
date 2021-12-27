@@ -1,6 +1,6 @@
 "use strict";
 
-//Elements
+//All Elements
 const inputUser = document.querySelector(".username");
 const inputPass = document.querySelector(".pass");
 const firstLoginBtn = document.querySelector(".first-login-btn");
