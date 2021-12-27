@@ -1,0 +1,3 @@
+user = email , username , password , currency , locail.
+
+money = 0 , movement = 0.

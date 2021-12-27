@@ -1,0 +1,644 @@
+:root {
+  --primary-color: linear-gradient(to top left, #39b385, #9be15d);
+  --single-primary-color: #5ec576;
+  --form-bg: rgba(255, 255, 255, 0.74);
+  --positive: rgba(0, 255, 98, 0.996);
+  --negative: rgba(255, 0, 0, 0.996);
+}
+
+::selection {
+  color: #fff;
+  background: var(--primary-color);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+  background: #f4f4f4;
+  font-family: "Poppins", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 14rem;
+  filter: drop-shadow(4px 3px 4px #fff);
+}
+
+form {
+  margin: 0.5em 0;
+}
+
+input {
+  background: rgba(255, 255, 255, 0.521);
+}
+
+/* Utilites */
+.primary-h2 {
+  color: var(--primary-color);
+  text-shadow: 4px 4px 5px #fff;
+  font-size: 1em;
+}
+
+.btn-container {
+  width: inherit;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 0.5em;
+}
+
+.btn {
+  background: transparent;
+  outline: none;
+  border: none;
+  margin: 10px 5px !important;
+  border: 1px solid rgb(196, 255, 214);
+}
+
+.btn:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: #fff;
+  font-weight: bold;
+  margin: 1em auto;
+  padding: 0.5em 1.5em;
+}
+
+.btn-secondary {
+  background: var(--form-bg);
+  color: #444;
+  font-weight: 100;
+  margin: 1em auto;
+  padding: 0.5em 1em;
+}
+
+.input-tools {
+  outline: none;
+  background: rgba(255, 255, 255, 0.3);
+  font-size: 1.4em;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  border-radius: 15px;
+  margin: 1% 0;
+  color: var(--primary-color);
+}
+
+.input-tools::placeholder {
+  text-align: center;
+  font-weight: lighter;
+  color: rgba(0, 0, 0, 0.327);
+}
+
+.input-tools[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  height: 32px;
+  margin-right: 10px;
+}
+
+.btn-tools {
+  background-color: rgba(255, 255, 255, 0.65);
+  padding: 1.5% 5%;
+  font-weight: bold;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  margin: 1% 0 3% 0;
+}
+
+.btn-tools:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.deposit {
+  font-size: 13px;
+  background: var(--positive);
+  color: #444;
+  padding: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 10px;
+  margin: 0 5px;
+}
+
+.withdraw {
+  margin: 0 5px;
+  font-weight: bold;
+  font-size: 13px;
+  background: var(--negative);
+  color: #fff;
+  text-transform: uppercase;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+/* Custom CSS (Login page) */
+.login-page {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-color);
+  z-index: -20;
+  opacity: .85;
+}
+
+.login-form {
+  width: 20%;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  background: var(--form-bg);
+  backdrop-filter: blur(10px);
+  position: relative;
+  animation: scale-form-down 1s ease forwards;
+}
+
+.login-form:hover {
+  animation: scale-form-up 1s ease forwards;
+}
+
+@keyframes scale-form-up {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+
+  to {
+    transform: rotate(0.5deg) scale(1.05);
+  }
+}
+
+@keyframes scale-form-down {
+  from {
+    transform: rotate(0.5deg) scale(1.05);
+  }
+
+  to {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+.login-form::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom right, rgb(221, 221, 221) 30%, green 140%);
+  opacity: .8;
+  border-radius: 15px;
+  z-index: -10;
+}
+
+.login-msg {
+  text-align: center;
+  margin-top: -3.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.login form,
+.signup form {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login form input,
+.signup form input {
+  text-align: center;
+  margin: 2px 0;
+  padding: 10px;
+  border: none;
+  font-weight: bold;
+  color: var(--primary-color);
+  outline: none;
+  border-radius: 10px;
+}
+
+.login form input::placeholder,
+.signup form input::placeholder {
+  text-transform: uppercase;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.selection-menu h5 {
+  display: inline;
+}
+
+
+
+
+/* Custom CSS (Panel) */
+.panel {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.panel-nav {
+  width: 100%;
+  height: max-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.panel-inner-nav {
+  width: 80%;
+  height: max-content;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5em auto;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.user-name {
+  text-transform: uppercase;
+  color: var(--primary-color);
+}
+
+.panel-inner-nav button {
+  order: 2;
+}
+
+.panel-contents {
+  width: 80%;
+  height: 90%;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-about {
+  width: 100%;
+  height: max-content;
+  display: flex;
+  justify-content: space-between;
+}
+
+.date {
+  font-weight: bold;
+  border-bottom: 1px solid #444;
+}
+
+.right-about {
+  padding-top: 0.3em;
+  padding-right: 1em;
+  font-size: 2.3em;
+  color: var(--primary-color);
+}
+
+.panel-all-tools {
+  width: 100%;
+  height: 80%;
+  margin-top: 0.5em;
+  display: flex;
+  align-items: center;
+}
+
+.left-history {
+  width: 60%;
+  height: 100%;
+  border-radius: 25px;
+  margin-right: 5px;
+  background: #fff;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.left-history-content {
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1em;
+  margin: 0.2em auto;
+  border-bottom: 1.5px solid rgba(128, 128, 128, 0.2);
+  align-items: center;
+  text-align: center;
+}
+
+.his-content-left {
+  width: 50%;
+  height: 80%;
+  display: flex;
+  flex-basis: content;
+  padding-top: 1em;
+}
+
+.his-num {
+  font-weight: bold;
+}
+
+.his-date {
+  margin: 0 3%;
+}
+
+.n-money {
+  font-size: 1.3em;
+  margin-right: 10px;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+/* CUSTOM CSS (tools) */
+.panel-tools {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.tools {
+  width: 90%;
+  height: 31%;
+  border-radius: 25px 10px 25px 10px;
+}
+
+.transfer {
+  background: linear-gradient(to bottom right,
+      rgb(238, 234, 178),
+      rgb(207, 179, 18));
+  position: relative;
+}
+
+.request {
+  background-image: linear-gradient(to bottom right,
+      rgb(178, 238, 178),
+      rgb(20, 199, 20));
+  position: relative;
+}
+
+.confirm-logout {
+  background-image: linear-gradient(to bottom right,
+      rgb(238, 180, 178),
+      rgb(199, 56, 20));
+  position: relative;
+}
+
+.transfer form,
+.request form,
+.confirm-logout form {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.transfer form label,
+.request form label,
+.confirm-logout form label {
+  font-size: 1em;
+  font-weight: bolder;
+}
+
+.transfer form div,
+.request form div,
+.confirm-logout form div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.transfer form div div,
+.request form div div,
+.confirm-logout form div div {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.transfer form div div input,
+.request form div div input,
+.confirm-logout form div div input {
+  width: 80%;
+  height: 33px;
+}
+
+.panel-statistics {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.55em;
+}
+
+.statistics-left {
+  width: 65%;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.statistics-left p {
+  width: 30%;
+}
+
+.sta-amount {
+  font-size: 1.6em;
+  font-weight: bold;
+  margin: 0 10% 0 3%;
+  color: var(--positive);
+  -webkit-text-stroke: 0.5px purple;
+}
+
+p:nth-child(2) .sta-amount {
+  color: var(--negative);
+  -webkit-text-stroke: 0;
+}
+
+.statistics-right p span {
+  font-weight: bold;
+  font-size: 1.08em;
+}
+
+.statistics-left .sort-btn {
+  color: black;
+  font-size: 1.4em;
+}
+
+.statistics-left .sort-btn:hover {
+  opacity: 0.7;
+}
+
+/* Responsive */
+/* 1- MOBILE */
+@media screen and (max-width: 425px) {
+  .login-form {
+    width: 80%;
+    height: 70vh;
+  }
+
+  .panel-inner-nav div h3 {
+    font-size: 1.05em;
+  }
+
+  .panel-about {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .left-about h3 {
+    font-size: 1.5em;
+  }
+
+  .left-about h5 {
+    text-align: center;
+  }
+
+  .right-about {
+    font-size: 2.3em;
+    text-align: center;
+    padding: 0;
+    margin: 2% 0;
+  }
+
+  .panel-all-tools {
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  .left-history {
+    border-radius: 0;
+    order: 3;
+    width: 100%;
+    height: 50%;
+    margin: 2% 0;
+  }
+
+  .left-history-content {
+    font-size: 90%;
+  }
+
+  .his-content-left {
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .his-date {
+    margin-top: 6%;
+    text-align: center;
+  }
+
+  .n-money {
+    font-size: 125%;
+  }
+
+  .panel-tools {
+    width: 100%;
+    height: 190%;
+  }
+
+  .tools {
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .panel-statistics {
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .statistics-left {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 3%;
+  }
+
+  .statistics-left p {
+    width: 100%;
+    order: 1;
+  }
+
+  .statistics-left .sort-btn {
+    font-size: 1.9em;
+  }
+
+  .statistics-right {
+    padding-top: 5px;
+    border-top: 1px solid var(--primary-color);
+  }
+}
+
+/* 2- TABLET */
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  .login-form {
+    width: 50%;
+    height: 50vh;
+  }
+
+  .panel-statistics {
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .statistics-left {
+    width: 100%;
+  }
+
+  .statistics-left p {
+    width: 100%;
+    font-size: 0.6em;
+    text-align: center;
+  }
+}
