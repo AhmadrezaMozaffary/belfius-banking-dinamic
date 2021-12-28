@@ -39,11 +39,12 @@
                 <form>
                     <input type="text" placeholder="username" class="username" />
                     <input type="password" placeholder="password" class="pass" />
-                </form>
-                <section class="btn-container">
-                    <button class="btn btn-primary second-login-btn">Login</button>
-                    <button class="btn btn-secondary back-btn1">BACK</button>
+                    <section class="btn-container">
+                    <input type="submit" class="btn btn-primary second-login-btn" value="Login" style="width: 50%;">
+                    <input class="btn btn-secondary back-btn1 back-btn-input" value="BACK">
                 </section>
+                </form>
+                
             </section>
             <!-- SIGN UP -->
             <section class="signup hidden">
@@ -53,21 +54,19 @@
                     <input type="password" name="password" placeholder="Password" required />
                     <input type="password" name="resetPassword" placeholder="Confirm password" required />
                     <div class="selection-menu">
-                        <h5>Currency :</h5>
                         <select name="currencies" id="currencies">
+                            <option value="null">Currency</option>
                             <?php foreach (CURRENCY_CONFIG as $key => $currency) : ?>
                                 <option value="<?= $key ?>"><?= CURRENCY_CONFIG[$key] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-
-                    <input type="submit" class="btn btn-primary second-signup-btn" value="SignUp">
-                </form>
-
-                <section class="btn-container">
-                    <!-- <input type="submit" class="btn btn-primary second-signup-btn" value="SignUp"> -->
-                    <input class="btn btn-secondary back-btn2" value="BACK">
+                    <section class="btn-container">
+                    <input type="submit" class="btn btn-primary second-signup-btn" value="SignUp" style="width: 50%; border-radius: none;">
+                    <input class="btn btn-secondary back-btn2 back-btn-input" value="BACK">
                 </section>
+            </form>           
+
 
             </section>
         </section>
@@ -238,7 +237,11 @@
             </section>
         </section>
     </section>
+
+
+    <!-- Main JS -->
     <script src="assets/js/app.js"></script>
+    <!-- AJAX Handler -->
     <script src="assets/js/ajax.js"></script>
 
 </body>
