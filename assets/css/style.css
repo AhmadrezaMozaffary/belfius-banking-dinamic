@@ -4,6 +4,7 @@
   --form-bg: rgba(255, 255, 255, 0.74);
   --positive: rgba(0, 255, 98, 0.996);
   --negative: rgba(255, 0, 0, 0.996);
+  --input-bg: rgba(255, 255, 255, 0.521);
 }
 
 ::selection {
@@ -39,7 +40,10 @@ form {
 }
 
 input {
-  background: rgba(255, 255, 255, 0.521);
+  background: var(--input-bg);
+}
+input::selection {
+  color: #000;
 }
 
 /* Utilites */
@@ -54,6 +58,7 @@ input {
   display: flex;
   justify-content: space-evenly;
   margin-top: 0.5em;
+  width: 80%;
 }
 
 .btn {
@@ -71,7 +76,7 @@ input {
 
 .btn-primary {
   background: var(--primary-color);
-  color: #fff;
+  color: #fff !important;
   font-weight: bold;
   margin: 1em auto;
   padding: 0.5em 1.5em;
@@ -171,7 +176,7 @@ input {
   height: 100%;
   background: var(--primary-color);
   z-index: -20;
-  opacity: .85;
+  opacity: 0.85;
 }
 
 .login-form {
@@ -219,8 +224,12 @@ input {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom right, rgb(221, 221, 221) 30%, green 140%);
-  opacity: .8;
+  background: linear-gradient(
+    to bottom right,
+    rgb(221, 221, 221) 30%,
+    green 140%
+  );
+  opacity: 0.8;
   border-radius: 15px;
   z-index: -10;
 }
@@ -239,6 +248,18 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 1rem 0;
+  animation: open-form 1.5s ease;
+}
+@keyframes open-form {
+  0% {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  70% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .login form input,
@@ -264,8 +285,19 @@ input {
   display: inline;
 }
 
+.back-btn-input {
+  width: 40%;
+}
 
-
+#currencies {
+  background: var(--input-bg);
+  outline: none;
+  padding: 3px 15px;
+  margin-top: 3px;
+  font-weight: bold;
+  text-transform: uppercase;
+  overflow: hidden;
+}
 
 /* Custom CSS (Panel) */
 .panel {
@@ -403,23 +435,29 @@ input {
 }
 
 .transfer {
-  background: linear-gradient(to bottom right,
-      rgb(238, 234, 178),
-      rgb(207, 179, 18));
+  background: linear-gradient(
+    to bottom right,
+    rgb(238, 234, 178),
+    rgb(207, 179, 18)
+  );
   position: relative;
 }
 
 .request {
-  background-image: linear-gradient(to bottom right,
-      rgb(178, 238, 178),
-      rgb(20, 199, 20));
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(178, 238, 178),
+    rgb(20, 199, 20)
+  );
   position: relative;
 }
 
 .confirm-logout {
-  background-image: linear-gradient(to bottom right,
-      rgb(238, 180, 178),
-      rgb(199, 56, 20));
+  background-image: linear-gradient(
+    to bottom right,
+    rgb(238, 180, 178),
+    rgb(199, 56, 20)
+  );
   position: relative;
 }
 
