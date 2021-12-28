@@ -7,6 +7,13 @@ namespace App;
 include "interfaces.php";
 include "traits.php";
 include "../configs/dataConfigs.php";
+
+/**
+ * Auth calss --- Authentication class
+ * @property private string $tablename
+ * @method public login(): bool
+ * @method public signin(): array
+ */
 class Auth extends Connection implements \Authable
 {
     use \dataValidation;
@@ -24,7 +31,7 @@ class Auth extends Connection implements \Authable
      * @param [array] $data
      * @return array
      */
-    public function login($data)
+    public function login($data): bool
     {
         if (!$this->isExistEmail($data['email'])) {
             return false;
