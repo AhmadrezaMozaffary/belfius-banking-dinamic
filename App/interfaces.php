@@ -2,6 +2,6 @@
 
 interface Authable
 {
-    public function login();
-    public function signup($data):array;
+    public function login($data);
+    public function signup($data): array;
 }
