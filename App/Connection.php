@@ -2,6 +2,8 @@
 
 namespace App;
 
+session_start();
+
 /**
  * This Class For start Connection with database
  * Driver : PDO

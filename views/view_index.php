@@ -23,60 +23,8 @@
 </head>
 
 <body>
-    <!-- LOGIN Page -->
-    <section class="login-page">
-        <section class="login-form">
-            <header class="login-header">
-                <a href="#">
-                    <img src="assets/images/bank-logo.png" alt="" />
-                </a>
-                <h2 class="login-msg primary-h2">
-                    <span class="in-msg">Log in </span>to get started
-                </h2>
-            </header>
-            <section class="btn-container">
-                <button class="btn btn-primary first-login-btn">Login</button>
-                <button class="btn btn-secondary first-signup-btn">SignUp</button>
-            </section>
-            <!-- LOGIN -->
-            <section class="login hidden">
-                <form>
-                    <input type="text" placeholder="username" class="username" />
-                    <input type="password" placeholder="password" class="pass" />
-                    <section class="btn-container">
-                    <input type="submit" class="btn btn-primary second-login-btn" value="Login" style="width: 50%;">
-                    <input class="btn btn-secondary back-btn1 back-btn-input" value="BACK">
-                </section>
-                </form>
-                
-            </section>
-            <!-- SIGN UP -->
-            <section class="signup hidden">
-                <form id="signupForm" action="process/ajaxHandler.php" method="POST">
-                    <input type="email" name="email" placeholder="Email" required />
-                    <input type="text" name="fullname" placeholder="Full name" required />
-                    <input type="password" name="password" placeholder="Password" required />
-                    <input type="password" name="resetPassword" placeholder="Confirm password" required />
-                    <div class="selection-menu">
-                        <select name="currencies" id="currencies">
-                            <option value="null">Currency</option>
-                            <?php foreach (CURRENCY_CONFIG as $key => $currency) : ?>
-                                <option value="<?= $key ?>"><?= CURRENCY_CONFIG[$key] ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <section class="btn-container">
-                    <input type="submit" class="btn btn-primary second-signup-btn" value="SignUp" style="width: 50%; border-radius: none;">
-                    <input class="btn btn-secondary back-btn2 back-btn-input" value="BACK">
-                </section>
-            </form>           
-
-
-            </section>
-        </section>
-    </section>
     <!-- USER Panel -->
-    <section class="panel hidden">
+    <section class="panel">
         <!-- Panel Navbar -->
         <nav class="panel-nav">
             <div class="panel-inner-nav">
@@ -242,8 +190,11 @@
         </section>
     </section>
 
+<<<<<<< HEAD
     <!-- Alertify Library -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>                          
+=======
+>>>>>>> 4623320c57ad3688ff33e7e10737342fad693246
     <!-- Main JS -->
     <script src="assets/js/app.js"></script>
     <!-- AJAX Handler -->

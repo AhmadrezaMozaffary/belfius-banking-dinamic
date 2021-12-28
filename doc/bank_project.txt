@@ -1,3 +1,5 @@
-user = email , username , password , currency , locail.
-
-money = 0 , movement = 0.
+Reaquirements : 
+Each user must hase an email and a fullname and a password and a currency and a locail
+------------------------------------
+Future features : 
+Setting section.

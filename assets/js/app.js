@@ -196,118 +196,136 @@ firstSignupBtn.addEventListener("click", () => {
   loginMessage.textContent = "Sign up ";
 });
 
-let currentAcc, timer;
-secondLoginBtn.addEventListener("click", () => {
-  currentAcc = accounts.find(
-    (acc) => acc.username === inputUser.value.toLowerCase()
-  );
+// let currentAcc, timer;
+// secondLoginBtn.addEventListener("click", () => {
+//   currentAcc = accounts.find(
+//     (acc) => acc.username === inputUser.value.toLowerCase()
+//   );
 
-  //Calculate current date and time
-  const now = new Date();
-  const options = {
-    year: "numeric",
-    month: "2-digit",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-  };
-  const formattedDate = Intl.DateTimeFormat(currentAcc.locale, options).format(
-    now
-  );
-  lableDate.textContent = formattedDate;
+//   //Calculate current date and time
+//   const now = new Date();
+//   const options = {
+//     year: "numeric",
+//     month: "2-digit",
+//     day: "numeric",
+//     hour: "numeric",
+//     minute: "numeric",
+//   };
+//   const formattedDate = Intl.DateTimeFormat(currentAcc.locale, options).format(
+//     now
+//   );
+//   lableDate.textContent = formattedDate;
 
-  if (currentAcc?.pin === Number(inputPass.value)) {
-    inputUser.value = inputPass.value = "";
-    loginPage.classList.add("hidden");
-    userPanel.classList.remove("hidden");
-    usersName.textContent = `${currentAcc.owner.split(" ")[0]} 😊`;
+//   if (currentAcc?.pin === Number(inputPass.value)) {
+//     inputUser.value = inputPass.value = "";
+//     loginPage.classList.add("hidden");
+//     userPanel.classList.remove("hidden");
+//     usersName.textContent = `${currentAcc.owner.split(" ")[0]} 😊`;
 
-    //TIMER on login
-    if (timer) clearInterval(timer);
-    timer = logoutTimer();
+//     //TIMER on login
+//     if (timer) clearInterval(timer);
+//     timer = logoutTimer();
 
-    updateUI(currentAcc);
-  } else {
-    inputUser.value = inputPass.value = "";
-    alert("Username or Password is INCORRECT!");
-  }
-});
+//     updateUI(currentAcc);
+//   } else {
+//     inputUser.value = inputPass.value = "";
+//     alert("Username or Password is INCORRECT!");
+//   }
+// });
 
-transferBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  const reciverAcc = accounts.find((acc) => acc.username === inputID.value);
-  const amount = Number(transferInputAmount.value);
-  inputID.value = transferInputAmount.value = "";
-  if (
-    amount > 0 &&
-    reciverAcc &&
-    reciverAcc !== currentAcc &&
-    currentAcc.balance >= amount
-  ) {
-    currentAcc.movements.push(-amount);
-    reciverAcc.movements.push(amount);
-    currentAcc.movementsDates.push(new Date().toISOString());
-    reciverAcc.movementsDates.push(new Date().toISOString());
-    updateUI(currentAcc);
+// transferBtn.addEventListener("click", (e) => {
+//   e.preventDefault();
+//   const reciverAcc = accounts.find((acc) => acc.username === inputID.value);
+//   const amount = Number(transferInputAmount.value);
+//   inputID.value = transferInputAmount.value = "";
+//   if (
+//     amount > 0 &&
+//     reciverAcc &&
+//     reciverAcc !== currentAcc &&
+//     currentAcc.balance >= amount
+//   ) {
+//     currentAcc.movements.push(-amount);
+//     reciverAcc.movements.push(amount);
+//     currentAcc.movementsDates.push(new Date().toISOString());
+//     reciverAcc.movementsDates.push(new Date().toISOString());
+//     updateUI(currentAcc);
 
-    //RESET timer
-    clearInterval(timer);
-    timer = logoutTimer();
-  } else {
-    alert("Wrong information!");
-  }
-});
+//     //RESET timer
+//     clearInterval(timer);
+//     timer = logoutTimer();
+//   } else {
+//     alert("Wrong information!");
+//   }
+// });
 
-requestBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  const amount = Math.floor(reqInputAmount.value);
-  // It causes an ERROR - FIXME
-  /* const loanRole = currentAcc.movements.some((mov) => mov >= amount * 0.1); */
-  const checkLoan = function () {
-    if (amount > 0 && loanRole) {
-      const msg = `Requested loan \" ${formattedCurrency(
-        amount,
-        currentAcc.locale,
-        currentAcc.currency
-      )} \" Accepted!`;
-      displayMsg(reqLoanError, msg, "green"); //(4th argument)Default text-shadow is WHITE
-      currentAcc.movements.push(amount);
-      currentAcc.movementsDates.push(new Date().toISOString());
-      updateUI(currentAcc);
-    } else if (!loanRole) {
-      const msg = "Requested loan is grater than 10%!";
-      displayMsg(reqLoanError, msg, "red", "yellow");
-      updateUI(currentAcc);
-    } else if (amount <= 0) {
-      updateUI(currentAcc);
-    }
+// requestBtn.addEventListener("click", (e) => {
+//   e.preventDefault();
+//   const amount = Math.floor(reqInputAmount.value);
+//   // It causes an ERROR - FIXME
+//   /* const loanRole = currentAcc.movements.some((mov) => mov >= amount * 0.1); */
+//   const checkLoan = function () {
+//     if (amount > 0 && loanRole) {
+//       const msg = `Requested loan \" ${formattedCurrency(
+//         amount,
+//         currentAcc.locale,
+//         currentAcc.currency
+//       )} \" Accepted!`;
+//       displayMsg(reqLoanError, msg, "green"); //(4th argument)Default text-shadow is WHITE
+//       currentAcc.movements.push(amount);
+//       currentAcc.movementsDates.push(new Date().toISOString());
+//       updateUI(currentAcc);
+//     } else if (!loanRole) {
+//       const msg = "Requested loan is grater than 10%!";
+//       displayMsg(reqLoanError, msg, "red", "yellow");
+//       updateUI(currentAcc);
+//     } else if (amount <= 0) {
+//       updateUI(currentAcc);
+//     }
 
-    //RESET timer
-    clearInterval(timer);
-    timer = logoutTimer();
-  };
-  setTimeout(checkLoan, 2500);
+//     //RESET timer
+//     clearInterval(timer);
+//     timer = logoutTimer();
+//   };
+//   setTimeout(checkLoan, 2500);
 
-  reqInputAmount.value = "";
-});
+//   reqInputAmount.value = "";
+// });
 
-logoutBtn.addEventListener("click", (e) => {
-  e.preventDefault();
-  if (
-    userConfirmInput.value.toLowerCase() === currentAcc.username &&
-    Number(passConfirmInput.value) === currentAcc.pin
-  ) {
-    userConfirmInput.value = passConfirmInput.value = "";
-    userPanel.classList.add("hidden");
-    loginPage.classList.remove("hidden");
-    displayMsg(reqLoanError, "Request Loan", "black");
-    displayMsg(logoutError, "Close Account", "black");
-    sortBtn.style.color = "black";
-  } else {
-    displayMsg(logoutError, "Wrong User or Password!", "red");
-  }
-});
+// logoutBtn.addEventListener("click", (e) => {
+//   e.preventDefault();
+//   if (
+//     userConfirmInput.value.toLowerCase() === currentAcc.username &&
+//     Number(passConfirmInput.value) === currentAcc.pin
+//   ) {
+//     userConfirmInput.value = passConfirmInput.value = "";
+//     userPanel.classList.add("hidden");
+//     loginPage.classList.remove("hidden");
+//     displayMsg(reqLoanError, "Request Loan", "black");
+//     displayMsg(logoutError, "Close Account", "black");
+//     sortBtn.style.color = "black";
+//   } else {
+//     displayMsg(logoutError, "Wrong User or Password!", "red");
+//   }
+// });
 
+// let sorted = false;
+// sortBtn.addEventListener("click", (e) => {
+//   e.preventDefault();
+//   displayMovements(currentAcc, !sorted);
+//   sorted = !sorted;
+//   if (sorted) {
+//     sortBtn.style.color = "green";
+//   } else {
+//     sortBtn.style.color = "black";
+//   }
+// });
+
+// Showing Error Alerts with Alertify
+const errorAlert = (msg) => {
+  alertify.error(msg);
+};
+
+<<<<<<< HEAD
 let sorted = false;
 sortBtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -323,4 +341,9 @@ sortBtn.addEventListener("click", (e) => {
 // Showing Error Alerts with Alertify
 const errorAlert = (msg) => {
   alertify.error(msg);
+=======
+// Showing Success Alerts with Alertify
+const successAlert = (msg) => {
+  alertify.success(msg);
+>>>>>>> 4623320c57ad3688ff33e7e10737342fad693246
 };

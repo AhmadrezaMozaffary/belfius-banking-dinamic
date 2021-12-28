@@ -11,13 +11,33 @@ class Auth extends Connection implements \Authable
 {
     use \dataValidation;
     private string $tableName = "users";
+
+
     # This constructor method use for connection to database
     public function __construct()
     {
         $this->connection();
     }
-    public function login()
+    /**
+     * Login method
+     * ?argument [string] user's email , [string] user's password 
+     * @param [array] $data
+     * @return array
+     */
+    public function login($data)
     {
+        if (!$this->isExistEmail($data['email'])) {
+            return false;
+        }
+        if (password_verify($data['password'], $this->getUserByEmail($data['email'])['password'])) {
+            $_SESSION['userLogin'] = $this->getUserByEmail($data['email']);
+            if (isset($_SESSION['userLogin'])) {
+                return true;
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -54,17 +74,23 @@ class Auth extends Connection implements \Authable
             ];
             return $registerInfo;
         }
+
         # Currency Validation
         if (!($data['currencies'] >= 0) || !($data['currencies'] < sizeof(CURRENCY_CONFIG))) {
             $registerInfo = [
-                'msg'  => "Your Currecy isn't valid , Please close your Developer Tools :D",
+                'msg'  => "Please choose a currency :D",
                 'bool' => false
             ];
             return $registerInfo;
         }
+
+        # Encoding Password
+        $passEncoded = password_hash($data['password'], PASSWORD_BCRYPT);
+
         # Check locail is set or isn't set
         $locail = null;
         isset($data['locail']) and !empty($data['locail']) ? $locail = $data['locail'] : $locail = null;
+
         # Adding process to the dataBase
         !is_null($locail) ? $sql = "INSERT INTO {$this->tableName} (email , fullname , password , curency , locail) VALUES (:email , :fullname , :password , :curency , :locail)"
             : $sql = "INSERT INTO {$this->tableName} (email , fullname , password , curency ) VALUES (:email , :fullname , :password , :curency)";
@@ -72,7 +98,7 @@ class Auth extends Connection implements \Authable
         $stmt = $this->conn->prepare($sql);
         if (!is_null($locail)) {
             $result = $stmt->execute([
-                ':email' => $data['email'], ':fullname' => $data['fullname'], ':password' => $data['password'], ':curency' => $data['currencies'], ':locail' => $data['locail']
+                ':email' => $data['email'], ':fullname' => $data['fullname'], ':password' => $passEncoded, ':curency' => $data['currencies'], ':locail' => $data['locail']
             ]);
             $result ? $registerInfo = [
                 'msg'  => "Welcome to Our Website :D",
@@ -83,7 +109,7 @@ class Auth extends Connection implements \Authable
             ];
         } else {
             $result = $stmt->execute([
-                ':email' => $data['email'], ':fullname' => $data['fullname'], ':password' => $data['password'], ':curency' => $data['currencies']
+                ':email' => $data['email'], ':fullname' => $data['fullname'], ':password' => $passEncoded, ':curency' => $data['currencies']
             ]);
             $result ? $registerInfo = [
                 'msg'  => "Welcome to Our Website :D",
