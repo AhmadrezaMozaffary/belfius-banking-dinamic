@@ -13,11 +13,11 @@ trait dataValidation
         return true;
     }
 
-    private function isValidEmail(string $email): bool
+    private function isExistEmail(string $email): bool
     {
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            return false;
-        }
-        return true;
+        $sql = "SELECT id FROM {$this->tableName} WHERE email = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$email]);
+        return @is_string($stmt->fetch(PDO::FETCH_ASSOC)['id']) ?? false;
     }
 }

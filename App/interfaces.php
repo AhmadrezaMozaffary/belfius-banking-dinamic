@@ -3,5 +3,5 @@
 interface Authable
 {
     public function login();
-    public function register($data): bool;
+    public function signup($data):array;
 }

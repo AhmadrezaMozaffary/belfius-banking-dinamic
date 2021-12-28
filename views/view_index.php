@@ -14,6 +14,8 @@
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="theme-color" content="#ffffff" />
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -45,24 +47,28 @@
             </section>
             <!-- SIGN UP -->
             <section class="signup hidden">
-                <form>
-                    <input type="email" placeholder="Email" />
-                    <input type="text" placeholder="username" />
-                    <input type="password" placeholder="password" />
-                    <input type="password" placeholder="check password" />
+                <form id="signupForm" action="process/ajaxHandler.php" method="POST">
+                    <input type="email" name="email" placeholder="Email" required />
+                    <input type="text" name="fullname" placeholder="Full name" required />
+                    <input type="password" name="password" placeholder="Password" required />
+                    <input type="password" name="resetPassword" placeholder="Confirm password" required />
                     <div class="selection-menu">
                         <h5>Currency :</h5>
                         <select name="currencies" id="currencies">
-                            <option value="USD">USD$</option>
-                            <option value="EUR">EUR </option>
-                            <option value="IRR">IRR</option>
+                            <?php foreach (CURRENCY_CONFIG as $key => $currency) : ?>
+                                <option value="<?= $key ?>"><?= CURRENCY_CONFIG[$key] ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
+
+                    <input type="submit" class="btn btn-primary second-signup-btn" value="SignUp">
                 </form>
+
                 <section class="btn-container">
-                    <button class="btn btn-primary second-signup-btn">SignUp</button>
-                    <button class="btn btn-secondary back-btn2">BACK</button>
+                    <!-- <input type="submit" class="btn btn-primary second-signup-btn" value="SignUp"> -->
+                    <input class="btn btn-secondary back-btn2" value="BACK">
                 </section>
+
             </section>
         </section>
     </section>
@@ -233,6 +239,8 @@
         </section>
     </section>
     <script src="assets/js/app.js"></script>
+    <script src="assets/js/ajax.js"></script>
+
 </body>
 
 </html>
