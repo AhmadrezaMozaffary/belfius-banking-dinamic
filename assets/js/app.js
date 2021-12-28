@@ -115,7 +115,6 @@ const calcDisplayBalance = function (acc) {
 
 // Calculate and Displat summary
 const calcDisplaySummary = function (acc) {
-
   // Calculate statistics
   const income = acc.movements
     .filter((mov) => mov > 0)
@@ -320,3 +319,8 @@ sortBtn.addEventListener("click", (e) => {
     sortBtn.style.color = "black";
   }
 });
+
+// Showing Error Alerts with Alertify
+const errorAlert = (msg) => {
+  alertify.error(msg);
+};
