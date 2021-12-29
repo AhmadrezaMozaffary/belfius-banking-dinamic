@@ -3,3 +3,6 @@ Each user must hase an email and a fullname and a password and a currency and a 
 ------------------------------------
 Future features : 
 Setting section.
+-----------------------------------
+Email : belfiusbanking5@gmail.com
+Passord : belfius1234
