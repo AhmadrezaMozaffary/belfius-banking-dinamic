@@ -41,6 +41,7 @@
                 <form id="loginForm" action="process/ajaxHandler.php" method="POST">
                     <input type="Email" name="email" placeholder="Email" class="username" required />
                     <input type="password" name="password" placeholder="password" class="pass" required />
+                    <button class="btn-reset" type="button">Reset my password</button>
                     <section class="btn-container">
                         <input type="submit" class="btn btn-primary second-login-btn" value="Login" style="width: 50%;">
                         <input class="btn btn-secondary back-btn1 back-btn-input" value="BACK">
@@ -67,6 +68,24 @@
                         <input type="submit" class="btn btn-primary second-signup-btn" value="SignUp" style="width: 50%; border-radius: none;">
                         <input class="btn btn-secondary back-btn2 back-btn-input" value="BACK">
                     </section>
+                </form>
+            </section>
+        </section>
+        <!-- Modal Rest Password -->
+        <section class="modal-reset-pass-container hidden">
+            <section class="modal-reset-pass">
+                <button class="x-btn">
+                x
+                </button>
+                <form action="#">
+                    <input type="email" placeholder="Email">
+                    <input type="password" placeholder="Password">
+                    <input type="submit" class="btn btn-primary" >
+                </form>
+                <div class="seprater-line"></div>
+                <form action="#">
+                    <input type="number" min="100000" max="999999" name="resetPasswordToken" class="code-reset-password" placeholder="code">
+                    <input type="submit" class="btn btn-primary" value="Change my password">
                 </form>
             </section>
         </section>

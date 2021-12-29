@@ -15,6 +15,30 @@ const loginMessage = document.querySelector(".in-msg");
 const backBtn1 = document.querySelector(".back-btn1");
 const backBtn2 = document.querySelector(".back-btn2");
 
+//Restpassword ( Modal window )
+const btnResetPassword = document.querySelector(".btn-reset");
+const closeResetPassworModal = document.querySelector(".x-btn");
+const modalResetPass = document.querySelector(".modal-reset-pass-container");
+btnResetPassword.addEventListener("click", () => {
+  modalResetPass.classList.remove("hidden");
+});
+closeResetPassworModal.addEventListener("click", () => {
+  modalResetPass.classList.add("hidden");
+});
+
+/*
+ Showing ALerts
+*/
+// Showing Error Alerts with Alertify
+const errorAlert = (msg) => {
+  alertify.error(msg);
+};
+
+// Showing Success Alerts with Alertify
+const successAlert = (msg) => {
+  alertify.success(msg);
+};
+
 const userPanel = document.querySelector(".panel");
 const btnContainer = document.querySelector(".btn-container");
 const logoutBtn = document.querySelector(".logout-btn");
@@ -115,7 +139,6 @@ const calcDisplayBalance = function (acc) {
 
 // Calculate and Displat summary
 const calcDisplaySummary = function (acc) {
-
   // Calculate statistics
   const income = acc.movements
     .filter((mov) => mov > 0)
@@ -321,7 +344,6 @@ firstSignupBtn.addEventListener("click", () => {
 //   }
 // });
 
-
 // let sorted = false;
 // sortBtn.addEventListener("click", (e) => {
 //   e.preventDefault();
@@ -333,15 +355,3 @@ firstSignupBtn.addEventListener("click", () => {
 //     sortBtn.style.color = "black";
 //   }
 // });
-
-
-// Showing Error Alerts with Alertify
-const errorAlert = (msg) => {
-  alertify.error(msg);
-};
-
-// Showing Success Alerts with Alertify
-const successAlert = (msg) => {
-  alertify.success(msg);
-};
-
