@@ -115,6 +115,7 @@ const calcDisplayBalance = function (acc) {
 
 // Calculate and Displat summary
 const calcDisplaySummary = function (acc) {
+
   // Calculate statistics
   const income = acc.movements
     .filter((mov) => mov > 0)
@@ -320,10 +321,6 @@ firstSignupBtn.addEventListener("click", () => {
 //   }
 // });
 
-// Showing Error Alerts with Alertify
-const errorAlert = (msg) => {
-  alertify.error(msg);
-};
 
 // let sorted = false;
 // sortBtn.addEventListener("click", (e) => {
@@ -337,11 +334,14 @@ const errorAlert = (msg) => {
 //   }
 // });
 
+
 // Showing Error Alerts with Alertify
 const errorAlert = (msg) => {
   alertify.error(msg);
 };
+
 // Showing Success Alerts with Alertify
 const successAlert = (msg) => {
   alertify.success(msg);
 };
+

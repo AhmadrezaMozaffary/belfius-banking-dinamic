@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * Data validation functionality
+ */
 trait dataValidation
 {
     private function isSafePass(string $password): bool

@@ -21,8 +21,8 @@ $(document).ready(function () {
             success: function (response) {
                 if (response['bool'] == false) {
                     errorAlert(response['msg']);
-                } else {
-                    successAlert(response['msg']);
+                } else if (response == true) {
+                    window.location.href = "http://localhost/bank_project/";
                 }
             }
         });
@@ -42,7 +42,6 @@ $(document).ready(function () {
                 action: 'login',
                 data: dataSerialize
             },
-            // dataType: "json",
             success: function (response) {
                 if (response == false) {
                     errorAlert("Email or password isn't currect.");

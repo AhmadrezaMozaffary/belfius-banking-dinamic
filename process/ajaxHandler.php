@@ -14,8 +14,22 @@ if (isset($_POST['action'])) {
             'resetPassword' => explode("=", $exploade[3])[1],
             'currencies' => explode("=", $exploade[4])[1],
         ];
-        $signup = new Auth;
-        echo json_encode($signup->signup($userData));
+        $auth = new Auth;
+        if ($auth->signup($userData)['bool']) {
+            echo $auth->login($userData);
+        } else {
+            echo json_encode($auth->signup($userData));
+        }
+    }
+
+    if ($_POST['action'] == "login") {
+        $exploade = (explode('&', $_POST['data']));
+        $userData = [
+            'email' => explode("=", $exploade[0])[1],
+            'password' => explode("=", $exploade[1])[1],
+        ];
+        $login = new Auth;
+        echo $login->login($userData);
     }
 
     if ($_POST['action'] == "login") {

@@ -5,13 +5,15 @@ namespace App;
 session_start();
 
 /**
- * This Class For start Connection with database
- * Driver : PDO
+ * Connection calss --- connect to the "bankprojectt" dataBase with PDO driver
+ * @property object $conn
+ * @property array $dbConfig
+ * @method connect()
  */
 class Connection
 {
-    protected $conn;
-    private $dbConfig = [
+    protected  $conn;
+    private array $dbConfig = [
         'dbname'    => "bankproject",
         'username'  => "root",
         'password'  => '',

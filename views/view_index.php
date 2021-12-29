@@ -8,10 +8,6 @@
     <title>Belfius Banking</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/style.css" />
-    <link
-      rel="stylesheet"
-      href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"
-    />
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png" />
@@ -190,11 +186,9 @@
         </section>
     </section>
 
-<<<<<<< HEAD
+
     <!-- Alertify Library -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>                          
-=======
->>>>>>> 4623320c57ad3688ff33e7e10737342fad693246
     <!-- Main JS -->
     <script src="assets/js/app.js"></script>
     <!-- AJAX Handler -->
