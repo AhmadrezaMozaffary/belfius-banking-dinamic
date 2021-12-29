@@ -315,7 +315,9 @@ input::selection {
   transition: opacity 0.8s ease;
   cursor: pointer;
 }
-
+.client-local {
+  display: none;
+}
 .modal-reset-pass-container {
   position: absolute;
   width: 100%;
