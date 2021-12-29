@@ -2,7 +2,7 @@
 
 namespace App;
 
-// include "Connection.php";
+include "../vendor/autoload.php";
 
 include "interfaces.php";
 include "traits.php";
@@ -17,8 +17,10 @@ include "../configs/dataConfigs.php";
 class Auth extends Connection implements \Authable
 {
     use \dataValidation;
-    private string $tableName = "users";
+    use \notification;
 
+    private string $tableName = "users";
+    private int $resetPasswordCode;
 
     # This constructor method use for connection to database
     public function __construct()

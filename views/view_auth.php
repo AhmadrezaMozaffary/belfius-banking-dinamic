@@ -77,17 +77,17 @@
         <section class="modal-reset-pass-container hidden">
             <section class="modal-reset-pass">
                 <button class="x-btn">
-                x
+                    x
                 </button>
-                <form action="#">
-                    <input type="email" placeholder="Email">
-                    <input type="password" placeholder="Password">
-                    <input type="submit" class="btn btn-primary" >
+                <form id="resetPasswordForm" action="process/ajaxHandler.php" method="POST">
+                    <input name="email" type="email" placeholder="Email" required>
+                    <input name="password" type="password" placeholder="Password" required>
+                    <input type="submit" class="btn btn-primary">
                 </form>
                 <div class="seprater-line"></div>
-                <form action="#">
-                    <input type="number" min="100000" max="999999" name="resetPasswordToken" class="code-reset-password" placeholder="code">
-                    <input type="submit" class="btn btn-primary" value="Change my password">
+                <form id="resetPasswordCodeForm" action="process/ajaxHandler.php" method="POST">
+                    <input type="number" min="100000" max="999999" name="code" class="code-reset-password" placeholder="code" required>
+                    <input type="submit" class="btn btn-primary" value="Change my password" required>
                 </form>
             </section>
         </section>
