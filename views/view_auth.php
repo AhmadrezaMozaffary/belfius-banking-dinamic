@@ -56,6 +56,8 @@
                     <input type="text" name="fullname" placeholder="Full name" required />
                     <input type="password" name="password" placeholder="Password" required />
                     <input type="password" name="resetPassword" placeholder="Confirm password" required />
+                    <!-- Get client local (language) -->
+                    <input type="text" name="local" value="en-US" class="client-local">
                     <div class="selection-menu">
                         <select name="currencies" id="currencies">
                             <option value="null">Currency</option>
