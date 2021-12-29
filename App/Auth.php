@@ -52,7 +52,7 @@ class Auth extends Connection implements \Authable
     /**
      * Register method
      *
-     * @param [string:email , string:fullname , string:password , string:reset passwrod , int:currency , string:locail] $data
+     * @param [string:email , string:fullname , string:password , string:reset passwrod , int:currency , string:locale] $data
      * @return array
      */
     public function signup($data): array
@@ -93,21 +93,21 @@ class Auth extends Connection implements \Authable
             return $registerInfo;
         }
 
-        # Encoding Password
+        # Encoding Password         
         $passEncoded = password_hash($data['password'], PASSWORD_BCRYPT);
 
-        # Check locail is set or isn't set
-        $locail = null;
-        isset($data['locail']) and !empty($data['locail']) ? $locail = $data['locail'] : $locail = null;
+        # Check locale is set or isn't set
+        $locale = null;
+        isset($data['locale']) and !empty($data['locale']) ? $locale = $data['locale'] : $locale = null;
 
         # Adding process to the dataBase
-        !is_null($locail) ? $sql = "INSERT INTO {$this->tableName} (email , fullname , password , curency , locail) VALUES (:email , :fullname , :password , :curency , :locail)"
+        !is_null($locale) ? $sql = "INSERT INTO {$this->tableName} (email , fullname , password , curency , locale) VALUES (:email , :fullname , :password , :curency , :locale)"
             : $sql = "INSERT INTO {$this->tableName} (email , fullname , password , curency ) VALUES (:email , :fullname , :password , :curency)";
 
         $stmt = $this->conn->prepare($sql);
-        if (!is_null($locail)) {
+        if (!is_null($locale)) {
             $result = $stmt->execute([
-                ':email' => $data['email'], ':fullname' => $data['fullname'], ':password' => $passEncoded, ':curency' => $data['currencies'], ':locail' => $data['locail']
+                ':email' => $data['email'], ':fullname' => $data['fullname'], ':password' => $passEncoded, ':curency' => $data['currencies'], ':locale' => $data['locale']
             ]);
             $result ? $registerInfo = [
                 'msg'  => "Welcome to Our Website :D",

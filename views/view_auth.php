@@ -56,8 +56,6 @@
                     <input type="text" name="fullname" placeholder="Full name" required />
                     <input type="password" name="password" placeholder="Password" required />
                     <input type="password" name="resetPassword" placeholder="Confirm password" required />
-                    <!-- Get client local (language) -->
-                    <input type="text" name="local" value="en-US" class="client-local">
                     <div class="selection-menu">
                         <select name="currencies" id="currencies">
                             <option value="null">Currency</option>
@@ -66,6 +64,8 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
+                    <!-- Get client locale (language) -->
+                    <input type="text" name="locale" value="en-US" class="client-locale">
                     <section class="btn-container">
                         <input type="submit" class="btn btn-primary second-signup-btn" value="SignUp" style="width: 50%; border-radius: none;">
                         <input class="btn btn-secondary back-btn2 back-btn-input" value="BACK">
