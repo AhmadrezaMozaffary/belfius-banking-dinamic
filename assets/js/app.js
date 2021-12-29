@@ -39,9 +39,9 @@ const successAlert = (msg) => {
   alertify.success(msg);
 };
 
-// Get client local
-const clientLocal = navigator.language || "en-US"; // Clien local || default value
-document.querySelector(".client-local").setAttribute("value", clientLocal);
+// Get client locale
+const clientLocale = navigator.language || "en-US"; // Clien locale || default value
+document.querySelector(".client-locale").setAttribute("value", clientLocale);
 
 const userPanel = document.querySelector(".panel");
 const btnContainer = document.querySelector(".btn-container");

@@ -318,7 +318,7 @@ input::selection {
   cursor: pointer;
 }
 
-.client-local {
+.client-locale {
   display: none;
 }
 
