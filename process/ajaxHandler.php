@@ -31,4 +31,14 @@ if (isset($_POST['action'])) {
         $login = new Auth;
         echo $login->login($userData);
     }
+
+    if ($_POST['action'] == "login") {
+        $exploade = (explode('&', $_POST['data']));
+        $userData = [
+            'email' => explode("=", $exploade[0])[1],
+            'password' => explode("=", $exploade[1])[1],
+        ];
+        $login = new Auth;
+        echo $login->login($userData);
+    }
 }

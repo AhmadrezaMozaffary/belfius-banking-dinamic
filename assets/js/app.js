@@ -321,6 +321,20 @@ firstSignupBtn.addEventListener("click", () => {
 //   }
 // });
 
+
+// let sorted = false;
+// sortBtn.addEventListener("click", (e) => {
+//   e.preventDefault();
+//   displayMovements(currentAcc, !sorted);
+//   sorted = !sorted;
+//   if (sorted) {
+//     sortBtn.style.color = "green";
+//   } else {
+//     sortBtn.style.color = "black";
+//   }
+// });
+
+
 // Showing Error Alerts with Alertify
 const errorAlert = (msg) => {
   alertify.error(msg);
@@ -330,3 +344,4 @@ const errorAlert = (msg) => {
 const successAlert = (msg) => {
   alertify.success(msg);
 };
+

@@ -186,6 +186,9 @@
         </section>
     </section>
 
+
+    <!-- Alertify Library -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>                          
     <!-- Main JS -->
     <script src="assets/js/app.js"></script>
     <!-- AJAX Handler -->
