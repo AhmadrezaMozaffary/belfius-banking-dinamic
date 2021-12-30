@@ -9,7 +9,7 @@
 
 ::selection {
   color: #fff;
-  background: var(--primary-color);
+  background: var(--single-primary-color);
 }
 
 * {
