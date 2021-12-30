@@ -25,6 +25,12 @@ btnResetPassword.addEventListener("click", () => {
 closeResetPassworModal.addEventListener("click", () => {
   modalResetPass.classList.add("hidden");
 });
+document.addEventListener("click", (event) => {
+  if (event.target == modalResetPass) modalResetPass.classList.add("hidden");
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key == "Escape") modalResetPass.classList.add("hidden");
+});
 
 /*
  Showing ALerts
@@ -38,7 +44,6 @@ const errorAlert = (msg) => {
 const successAlert = (msg) => {
   alertify.success(msg);
 };
-
 
 const userPanel = document.querySelector(".panel");
 const btnContainer = document.querySelector(".btn-container");
