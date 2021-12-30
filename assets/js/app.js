@@ -10,7 +10,7 @@ const secondSignupBtn = document.querySelector(".second-signup-btn");
 const signupSection = document.querySelector(".signup");
 const loginPage = document.querySelector(".login-page");
 const loginSection = document.querySelector(".login");
-const loginHeader = document.querySelector(".loign-header");
+const loginHeader = document.querySelector(".login-header");
 const loginMessage = document.querySelector(".in-msg");
 const backBtn1 = document.querySelector(".back-btn1");
 const backBtn2 = document.querySelector(".back-btn2");
@@ -205,6 +205,7 @@ const displayMsg = function (target, msg, msgColor, shadowColor = "white") {
 };
 
 const backBtns = function () {
+  loginHeader.style.animation = "move-down-login-header 1s ease";
   loginSection.classList.add("hidden");
   signupSection.classList.add("hidden");
   btnContainer.classList.remove("hidden");
@@ -214,11 +215,13 @@ backBtn1.addEventListener("click", backBtns);
 backBtn2.addEventListener("click", backBtns);
 
 firstLoginBtn.addEventListener("click", () => {
+  loginHeader.style.animation = "fade-in-login-header 1.5s ease";
   btnContainer.classList.toggle("hidden");
   loginSection.classList.toggle("hidden");
 });
 
 firstSignupBtn.addEventListener("click", () => {
+  loginHeader.style.animation = "fade-in-login-header 1.5s ease";
   btnContainer.classList.toggle("hidden");
   signupSection.classList.toggle("hidden");
   loginMessage.textContent = "Sign up ";
