@@ -41,7 +41,7 @@
                 <form id="loginForm" action="process/ajaxHandler.php" method="POST">
                     <input type="Email" name="email" placeholder="Email" class="username" required />
                     <input type="password" name="password" placeholder="password" class="pass" required />
-                    <button class="btn-reset" type="button">Reset my password</button>
+                    <button class="btn-reset" type="button">Forgot password?</button>
                     <section class="btn-container">
                         <input type="submit" class="btn btn-primary second-login-btn" value="Login" style="width: 50%;">
                         <input class="btn btn-secondary back-btn1 back-btn-input" value="BACK">
