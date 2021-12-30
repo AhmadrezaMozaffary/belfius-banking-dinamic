@@ -39,15 +39,10 @@ const successAlert = (msg) => {
   alertify.success(msg);
 };
 
-// Get client locale
-const clientLocale = navigator.language || "en-US"; // Clien locale || default value
-document.querySelector(".client-locale").setAttribute("value", clientLocale);
 
 const userPanel = document.querySelector(".panel");
 const btnContainer = document.querySelector(".btn-container");
 const logoutBtn = document.querySelector(".logout-btn");
-
-const lableDate = document.querySelector(".date");
 
 const inputID = document.querySelector(".input-id");
 const transferInputAmount = document.querySelector(".transfer-input-amount");
@@ -232,20 +227,6 @@ firstSignupBtn.addEventListener("click", () => {
 //   currentAcc = accounts.find(
 //     (acc) => acc.username === inputUser.value.toLowerCase()
 //   );
-
-//   //Calculate current date and time
-//   const now = new Date();
-//   const options = {
-//     year: "numeric",
-//     month: "2-digit",
-//     day: "numeric",
-//     hour: "numeric",
-//     minute: "numeric",
-//   };
-//   const formattedDate = Intl.DateTimeFormat(currentAcc.locale, options).format(
-//     now
-//   );
-//   lableDate.textContent = formattedDate;
 
 //   if (currentAcc?.pin === Number(inputPass.value)) {
 //     inputUser.value = inputPass.value = "";
