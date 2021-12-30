@@ -87,7 +87,18 @@ trait notification
             $mail->isHTML(true);
             $mail->addAddress($userEmail);
             $mail->Subject = "Reset Password | Belfius Banking";
-            $mail->Body = "Code is : <b style='color:red;background-color:#fff;'>{$this->resetPasswordCode}</b>";
+            $userFullName = $this->getUserByEmail($userEmail)['fullname'];
+            $body = "<section style='display:block; width: 70%; height: 50%; text-align:center; margin: 0 auto; border: 3px solid green; padding: 20px; background: linear-gradient(to top left, #39b385, #9be15d);'>
+            <p>hello dear <span class='name' style='font-size:25px; text-transform: uppercase;]'><b>{$userFullName}</b></span></p>
+            <p>Use the code below for reset your password
+            </p>
+            <p style='font-weight: bold; font-size: 20px;'>{$this->resetPasswordCode}</p>
+            <p style='font-weight: bold;'>
+              If you don't tried to change your password, easily get rid of this
+              message
+            </p>
+          </section>";
+            $mail->Body = $body;
 
             $send = $mail->send();
             if ($send) {
