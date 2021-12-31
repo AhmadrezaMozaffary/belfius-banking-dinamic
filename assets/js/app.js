@@ -19,17 +19,32 @@ const backBtn2 = document.querySelector(".back-btn2");
 const btnResetPassword = document.querySelector(".btn-reset");
 const closeResetPassworModal = document.querySelector(".x-btn");
 const modalResetPass = document.querySelector(".modal-reset-pass-container");
+const resetPasswordCodeInput = document.querySelector("#resetPasswordCodeForm");
+
 btnResetPassword.addEventListener("click", () => {
   modalResetPass.classList.remove("hidden");
 });
 closeResetPassworModal.addEventListener("click", () => {
   modalResetPass.classList.add("hidden");
+  resetPasswordCodeInput.classList.add("hidden");
 });
 document.addEventListener("click", (event) => {
-  if (event.target == modalResetPass) modalResetPass.classList.add("hidden");
+  if (event.target == modalResetPass) {
+    modalResetPass.classList.add("hidden");
+    resetPasswordCodeInput.classList.add("hidden");
+  }
 });
 document.addEventListener("keydown", (event) => {
-  if (event.key == "Escape") modalResetPass.classList.add("hidden");
+  if (event.key == "Escape") {
+    modalResetPass.classList.add("hidden");
+    resetPasswordCodeInput.classList.add("hidden");
+  }
+});
+
+// Open code submit form
+const submitBtnRestModal = document.querySelector(".btn-open-code-input");
+submitBtnRestModal.addEventListener("click", () => {
+  resetPasswordCodeInput.classList.remove("hidden");
 });
 
 /*

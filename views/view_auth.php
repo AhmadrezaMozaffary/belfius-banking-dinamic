@@ -81,11 +81,11 @@
                 </button>
                 <form id="resetPasswordForm" action="process/ajaxHandler.php" method="POST">
                     <input name="email" type="email" placeholder="Email" required>
-                    <input name="password" type="password" placeholder="Password" required>
-                    <input type="submit" class="btn btn-primary">
+                    <input name="password" type="password" placeholder="New password" required>
+                    <input type="submit" class="btn btn-primary btn-open-code-input">
                 </form>
                 <div class="seprater-line"></div>
-                <form id="resetPasswordCodeForm" action="process/ajaxHandler.php" method="POST">
+                <form id="resetPasswordCodeForm" action="process/ajaxHandler.php" method="POST" class="hidden">
                     <input type="number" min="100000" max="999999" name="code" class="code-reset-password" placeholder="code" required>
                     <input type="submit" class="btn btn-primary" value="Change my password" required>
                 </form>

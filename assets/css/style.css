@@ -452,6 +452,19 @@ input::selection {
   background: rgba(138, 138, 138, 0.4);
 }
 
+#resetPasswordCodeForm {
+  animation: show-reset-password 1s ease;
+}
+
+@keyframes show-reset-password {
+  0% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 1;
+  }
+}
+
 /* Custom CSS (Panel) */
 .panel {
   width: 100%;
