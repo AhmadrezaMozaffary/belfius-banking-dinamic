@@ -25,7 +25,7 @@
         <nav class="panel-nav">
             <div class="panel-inner-nav">
                 <div>
-                    <h3>Welcome, <span class="user-name">Name</span></h3>
+                    <h3>Welcome, <span class="user-name"><?= $_SESSION['userLogin']['fullname'] ?></span></h3>
                 </div>
             </div>
         </nav>
@@ -37,6 +37,7 @@
                 <div class="left-about">
                     <h3>Current Balance</h3>
                     <h5>As of <span class="date">2021/03/07</span></h5>
+                    <h5>Your id card : <span class="date"><?= $_SESSION['userLogin']['idCard'] ?></span></h5>
                 </div>
                 <h2 class="right-about">2,542.00 €</h2>
             </section>
@@ -188,7 +189,7 @@
 
 
     <!-- Alertify Library -->
-    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>                          
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <!-- Main JS -->
     <script src="assets/js/app-index.js"></script>
     <!-- AJAX Handler -->

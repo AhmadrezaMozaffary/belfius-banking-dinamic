@@ -46,7 +46,7 @@ if (isset($_POST['action'])) {
                 if (isset($_SESSION['resetPasswordCode'])) {
                     echo json_encode(
                         [
-                            'msg' => "We send a 6-Digits code to your email, please enter it, in this section :D",
+                            'msg' => "We send a 6-Digits code to your email, please check spam box :D",
                             'bool' => true
                         ]
                     );

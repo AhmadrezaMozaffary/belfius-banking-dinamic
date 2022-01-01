@@ -89,8 +89,8 @@ trait notification
             $mail->Subject = "Reset Password | Belfius Banking";
             $userFullName = $this->getUserByEmail($userEmail)['fullname'];
             $body = "<section style='display:block; width: 70%; height: 50%; text-align:center; margin: 0 auto; border: 3px solid green; padding: 20px; background: linear-gradient(to top left, #39b385, #9be15d);'>
-            <p>hello dear <span class='name' style='font-size:25px; text-transform: uppercase;]'><b>{$userFullName}</b></span></p>
-            <p>Use the code below for reset your password
+            <p>Hello dear <span class='name' style='font-size:25px; text-transform: uppercase;]'><b>{$userFullName}</b></span></p>
+            <p>Use the code below to reset your password
             </p>
             <p style='font-weight: bold; font-size: 20px;'>{$this->resetPasswordCode}</p>
             <p style='font-weight: bold;'>
