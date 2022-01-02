@@ -496,7 +496,7 @@ input::selection {
 }
 
 .user-name {
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: var(--primary-color);
 }
 

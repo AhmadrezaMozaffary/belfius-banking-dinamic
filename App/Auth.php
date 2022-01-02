@@ -101,13 +101,16 @@ class Auth extends Connection implements \Authable
         isset($data['locale']) and !empty($data['locale']) ? $locale = $data['locale'] : $locale = null;
 
         # Adding process to the dataBase
-        !is_null($locale) ? $sql = "INSERT INTO {$this->tableName} (email , fullname , password , curency , locale) VALUES (:email , :fullname , :password , :curency , :locale)"
-            : $sql = "INSERT INTO {$this->tableName} (email , fullname , password , curency ) VALUES (:email , :fullname , :password , :curency)";
+        !is_null($locale) ? $sql = "INSERT INTO {$this->tableName} (idCard ,email , fullname , password , curency , locale) VALUES (:idCard ,:email , :fullname , :password , :curency , :locale)"
+            : $sql = "INSERT INTO {$this->tableName} (idCard , email , fullname , password , curency ) VALUES (:idCard , :email , :fullname , :password , :curency)";
 
         $stmt = $this->conn->prepare($sql);
+        # Generate an idCard
+        $idCard = rand(1000000000000000, 9999999999999999);
+        # Executing query
         if (!is_null($locale)) {
             $result = $stmt->execute([
-                ':email' => $data['email'], ':fullname' => $data['fullname'], ':password' => $passEncoded, ':curency' => $data['currencies'], ':locale' => $data['locale']
+                ':idCard' => $idCard, ':email' => $data['email'], ':fullname' => $data['fullname'], ':password' => $passEncoded, ':curency' => $data['currencies'], ':locale' => $data['locale']
             ]);
             $result ? $registerInfo = [
                 'msg'  => "Welcome to Our Website :D",
@@ -118,7 +121,7 @@ class Auth extends Connection implements \Authable
             ];
         } else {
             $result = $stmt->execute([
-                ':email' => $data['email'], ':fullname' => $data['fullname'], ':password' => $passEncoded, ':curency' => $data['currencies']
+                ':idCard' => $idCard, ':email' => $data['email'], ':fullname' => $data['fullname'], ':password' => $passEncoded, ':curency' => $data['currencies']
             ]);
             $result ? $registerInfo = [
                 'msg'  => "Welcome to Our Website :D",

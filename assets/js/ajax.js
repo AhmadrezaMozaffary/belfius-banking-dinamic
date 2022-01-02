@@ -22,7 +22,10 @@ $(document).ready(function () {
                 if (response['bool'] == false) {
                     errorAlert(response['msg']);
                 } else if (response == true) {
-                    window.location.href = "http://localhost/bank_project/";
+                    successAlert("You're successfully signed up , welcome to your panell :D");
+                    setTimeout(() => {
+                        window.location.href = "http://localhost/bank_project/";
+                    }, 4000);
                 }
             }
         });
@@ -46,7 +49,10 @@ $(document).ready(function () {
                 if (response == false) {
                     errorAlert("Email or password isn't currect.");
                 } else if (response == true) {
-                    window.location.href = "http://localhost/bank_project/";
+                    successAlert("You logined in, welcome to your panell :D");
+                    setTimeout(() => {
+                        window.location.href = "http://localhost/bank_project/";
+                    }, 4000);
                 }
             }
         });
@@ -96,7 +102,10 @@ $(document).ready(function () {
                 if (response['bool'] == false) {
                     errorAlert(response['msg']);
                 } else if (response['bool'] == true) {
-                    window.location.href = "http://localhost/bank_project/";
+                    successAlert("Your password changed, welcome to your panell :D");
+                    setTimeout(() => {
+                        window.location.href = "http://localhost/bank_project/";
+                    }, 4000);
                 }
             }
         });
