@@ -5,6 +5,7 @@
  */
 
 spl_autoload_register(function ($class) {
-    $path = "{$class}.php";
-    include_once $path;
+    $path = dirname(__FILE__) . "/{$class}.php";
+    $path = str_replace('\\', '/', $path);
+    include $path;
 });
