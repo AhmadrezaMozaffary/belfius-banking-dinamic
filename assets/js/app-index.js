@@ -18,3 +18,20 @@ setInterval(() => {
   const formattedDate = Intl.DateTimeFormat(clientLocale, options).format(now);
   lableDate.textContent = formattedDate;
 }, 1000);
+
+// Save ID card into Clipboard
+const idCardEl = document.querySelector(".id-card");
+let idCardNumber;
+
+const copyID = () => {
+  idCardNumber = idCardEl.textContent;
+  navigator.clipboard.writeText(idCardNumber.split("-").join(""));
+  alertify.success("Copied");
+};
+idCardEl.addEventListener("click", copyID);
+
+function addHyphen(element) {
+  let finalVal = element.textContent.match(/.{1,4}/g).join("-");
+  element.textContent = finalVal;
+}
+addHyphen(idCardEl);

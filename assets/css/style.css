@@ -524,6 +524,10 @@ input::selection {
   border-bottom: 1px solid #444;
 }
 
+.id-card {
+cursor: grabbing;  text-decoration: none;
+}
+
 .right-about {
   padding-top: 0.3em;
   padding-right: 1em;
@@ -773,6 +777,10 @@ p:nth-child(2) .sta-amount {
     text-align: center;
     padding: 0;
     margin: 2% 0;
+  }
+
+  .id-card{
+    display: block;
   }
 
   .panel-all-tools {

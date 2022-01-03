@@ -8,10 +8,11 @@
     <title>Belfius Banking</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+
     <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
     <meta name="msapplication-TileColor" content="#da532c" />
     <meta name="theme-color" content="#ffffff" />
     <!-- jQuery CDN -->
@@ -37,7 +38,7 @@
                 <div class="left-about">
                     <h3>Current Balance</h3>
                     <h5>As of <span class="date">2021/03/07</span></h5>
-                    <h5>Your id card : <span class="date"><?= $_SESSION['userLogin']['idCard'] ?></span></h5>
+                    <h5>Your ID card : <abbr title="COPY!" class="id-card"><?= $_SESSION['userLogin']['idCard'] ?></abbr></h5>
                 </div>
                 <h2 class="right-about">2,542.00 €</h2>
             </section>
