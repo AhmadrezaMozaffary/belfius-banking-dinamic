@@ -1,9 +1,8 @@
-"strict mode";
+"use strict";
 
+//Calculate current date and time and add to DOM based on locale
 // Get client locale
 const clientLocale = navigator.language || "en-US"; // Clien locale || default value
-
-//Calculate current date and time and add to DOM
 const lableDate = document.querySelector(".date");
 setInterval(() => {
   const now = new Date();
@@ -23,10 +22,13 @@ setInterval(() => {
 const idCardEl = document.querySelector(".id-card");
 let idCardNumber;
 
+let hasAnimation = false;
 const copyID = () => {
+  idCardEl.style.animation = hasAnimation ? "none" : "copying .2s ease 5";
   idCardNumber = idCardEl.textContent;
   navigator.clipboard.writeText(idCardNumber.split("-").join(""));
   alertify.success("Copied");
+  hasAnimation = !hasAnimation;
 };
 idCardEl.addEventListener("click", copyID);
 
