@@ -28,6 +28,11 @@
                 <div>
                     <h3>Welcome, <span class="user-name"><?= $_SESSION['userLogin']['fullname'] ?></span></h3>
                 </div>
+                <div class="open-sidebar">
+                    <div class="sidebar-dots sidebar-dot1"></div>
+                    <div class="sidebar-dots sidebar-dot2"></div>
+                    <div class="sidebar-dots sidebar-dot3"></div>
+                </div>
             </div>
         </nav>
 

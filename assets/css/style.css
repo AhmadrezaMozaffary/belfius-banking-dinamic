@@ -500,6 +500,50 @@ input::selection {
   color: var(--primary-color);
 }
 
+.open-sidebar {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.sidebar-dots {
+  background: #000;
+  width: 5px;
+  height: 5px;
+  font-weight: bold;
+  margin: 2px;
+  transition: width 2s ease;
+}
+
+.open-sidebar:hover .sidebar-dot1 {
+  width: 100%;
+  animation: grow-width 1s ease;
+  animation-delay: 0.2s;
+}
+.open-sidebar:hover .sidebar-dot2 {
+  width: 100%;
+  animation: grow-width 1s ease;
+  animation-delay: 0.4s;
+}
+.open-sidebar:hover .sidebar-dot3 {
+  width: 100%;
+  animation: grow-width 1s ease;
+  animation-delay: 0.6s;
+}
+
+@keyframes grow-width {
+  0% {
+    width: 4px;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
 .panel-inner-nav button {
   order: 2;
 }
