@@ -35,3 +35,22 @@ function addHyphen(element) {
   element.textContent = finalVal;
 }
 addHyphen(idCardEl);
+
+// a Timer for loging out
+const lableTimer = document.querySelector(".timer");
+const logoutTimer = (min) => {
+  let time = min * 60; // In SEC (10m)
+  const tick = () => {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+    if (time === 0) {
+      clearInterval(timer);
+    }
+    time--;
+    lableTimer.textContent = `${min} : ${sec}`;
+  };
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
+};
+logoutTimer(10);

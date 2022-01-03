@@ -100,7 +100,6 @@ const lableOut = document.querySelector(".out");
 const lableInterest = document.querySelector(".interest");
 const sortBtn = document.querySelector(".sort-btn");
 
-const lableTimer = document.querySelector(".timer");
 
 // Calculate and Display Movements Day
 const calcDisplayMovDays = function (date, locale) {
@@ -205,28 +204,6 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
-// a Timer for loging out
-const logoutTimer = function () {
-  let time = 10 * 60; // In SEC (10m)
-  const tick = function () {
-    const min = String(Math.trunc(time / 60)).padStart(2, 0);
-    const sec = String(time % 60).padStart(2, 0);
-
-    if (time === 0) {
-      clearInterval(timer);
-    }
-
-    time--;
-
-    lableTimer.textContent = `${min} : ${sec}`;
-  };
-
-  tick();
-
-  const timer = setInterval(tick, 1000);
-
-  return timer;
-};
 
 const displayMsg = function (target, msg, msgColor, shadowColor = "white") {
   target.style.color = msgColor;
