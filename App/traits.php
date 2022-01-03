@@ -34,10 +34,13 @@ trait dataValidation
      */
     public function isExistEmail(string $email): bool
     {
-        $sql = "SELECT id FROM {$this->tableName} WHERE email = ?";
+        $sql = "SELECT COUNT(id) AS id FROM {$this->tableName} WHERE email = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$email]);
-        return @is_string($stmt->fetch(PDO::FETCH_ASSOC)['id']) ?? false;
+        if ($stmt->fetch(PDO::FETCH_ASSOC)['id']) {
+            return true;
+        }
+        return false;
     }
 
     /**
