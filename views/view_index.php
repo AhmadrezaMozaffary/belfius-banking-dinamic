@@ -14,7 +14,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png" />
     <meta name="msapplication-TileColor" content="#da532c" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#fff" />
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
@@ -40,7 +40,7 @@
                     <h5>As of <span class="date">2021/03/07</span></h5>
                     <h5>Your ID card : <abbr title="COPY!" class="id-card"><?= $_SESSION['userLogin']['idCard'] ?></abbr></h5>
                 </div>
-                <h2 class="right-about">2,542.00 €</h2>
+                <h2 class="right-about"><?= $_SESSION['userLogin']['money'] ?>$</h2>
             </section>
 
             <!-- TOOLS -->
@@ -48,78 +48,23 @@
                 <!-- TOOLS > LEFT -->
                 <section class="left-history">
                     <!-- HISTORY -->
-                    <div class="left-history-content">
-                        <div class="his-content-left">
-                            <p>
-                                <span class="his-num">8 </span><span class="kind-of-his withdraw">withdraw</span>
-                            </p>
-                            <p class="his-date">2021/03/07</p>
-                        </div>
-                        <p class="n-money">- 1,000 €</p>
-                    </div>
-                    <div class="left-history-content">
-                        <div class="his-content-left">
-                            <p>
-                                <span class="his-num">7 </span><span class="kind-of-his deposit">DEPOSIT</span>
-                            </p>
-                            <p class="his-date">2021/03/07</p>
-                        </div>
-                        <p class="n-money">1,300 €</p>
-                    </div>
-                    <div class="left-history-content">
-                        <div class="his-content-left">
-                            <p>
-                                <span class="his-num">6 </span><span class="kind-of-his deposit">DEPOSIT</span>
-                            </p>
-                            <p class="his-date">2021/03/07</p>
-                        </div>
-                        <p class="n-money">400 €</p>
-                    </div>
-                    <div class="left-history-content">
-                        <div class="his-content-left">
-                            <p>
-                                <span class="his-num">5 </span><span class="kind-of-his withdraw">withdraw</span>
-                            </p>
-                            <p class="his-date">2021/03/07</p>
-                        </div>
-                        <p class="n-money">- 300 €</p>
-                    </div>
-                    <div class="left-history-content">
-                        <div class="his-content-left">
-                            <p>
-                                <span class="his-num">4 </span><span class="kind-of-his withdraw">withdraw</span>
-                            </p>
-                            <p class="his-date">2021/03/07</p>
-                        </div>
-                        <p class="n-money">- 50 €</p>
-                    </div>
-                    <div class="left-history-content">
-                        <div class="his-content-left">
-                            <p>
-                                <span class="his-num">3 </span><span class="kind-of-his deposit">DEPOSIT</span>
-                            </p>
-                            <p class="his-date">2021/03/07</p>
-                        </div>
-                        <p class="n-money">942 €</p>
-                    </div>
-                    <div class="left-history-content">
-                        <div class="his-content-left">
-                            <p>
-                                <span class="his-num">2 </span><span class="kind-of-his withdraw">withdraw</span>
-                            </p>
-                            <p class="his-date">2021/03/07</p>
-                        </div>
-                        <p class="n-money">- 550 €</p>
-                    </div>
-                    <div class="left-history-content">
-                        <div class="his-content-left">
-                            <p>
-                                <span class="his-num">1 </span><span class="kind-of-his deposit">DEPOSIT</span>
-                            </p>
-                            <p class="his-date">2021/03/07</p>
-                        </div>
-                        <p class="n-money">1800 €</p>
-                    </div>
+                    <?php
+                    if (!is_null($movements[0]->movement)) {
+                        foreach ($movements as $mov) :
+                    ?>
+                            <div class="left-history-content">
+                                <div class="his-content-left">
+                                    <p>
+                                        <span class="his-num"></span><span class="kind-of-his <?= $mov->status ? 'deposit' : 'withdraw' ?>"><?= $mov->status ? 'deposit' : 'withdraw' ?></span>
+                                    </p>
+                                    <p class="his-date"><?= $mov->created_at ?></p>
+                                </div>
+                                <p class="n-money"><?= $mov->status ? '+' : '-' ?><?= $mov->movement ?></p>
+                            </div>
+                    <?php
+                        endforeach;
+                    }
+                    ?>
                 </section>
                 <!-- TOOLS > RIGHT -->
                 <section class="panel-tools">

@@ -1,8 +1,18 @@
 <?php
 
+use App\Assets;
 use App\Auth;
 
 include "../autoload.php";
+
+function getUserId()
+{
+    if (isset($_SESSION['userLogin'])) {
+        return $_SESSION['userLogin']['id'];
+    }
+}
+
+
 if (isset($_POST['action'])) {
 
     if ($_POST['action'] == "signup") {
@@ -15,8 +25,10 @@ if (isset($_POST['action'])) {
             'currencies' => explode("=", $exploade[4])[1],
         ];
         $auth = new Auth;
+        $assets = new Assets;
         if ($auth->signup($userData)['bool']) {
             echo $auth->login($userData);
+            $assets->addMovement(getUserId());
         } else {
             echo json_encode($auth->signup($userData));
         }

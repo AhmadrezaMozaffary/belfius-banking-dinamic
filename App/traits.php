@@ -56,6 +56,21 @@ trait dataValidation
         $stmt->execute([$email]);
         return $stmt->fetch(PDO::FETCH_ASSOC) ?? null;
     }
+
+    /**
+     * update Password method use for reset password
+     *
+     * @param string $email
+     * @param string $newPassword
+     * @return boolean
+     */
+    public function updatePassword(string $email, string $newPassword): bool
+    {
+        $newPassEncode = password_hash($newPassword, PASSWORD_BCRYPT);
+        $sql = "UPDATE {$this->tableName} SET password = :password WHERE email = :email";
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute([':password' => $newPassEncode, ':email' => $email]) ?? false;
+    }
 }
 
 /**
@@ -111,19 +126,5 @@ trait notification
             die("Email Not Sended : " . $th->getMessage());
         }
         $mail->smtpClose();
-    }
-    /**
-     * update Password method use for reset password
-     *
-     * @param string $email
-     * @param string $newPassword
-     * @return boolean
-     */
-    public function updatePassword(string $email, string $newPassword): bool
-    {
-        $newPassEncode = password_hash($newPassword, PASSWORD_BCRYPT);
-        $sql = "UPDATE {$this->tableName} SET password = :password WHERE email = :email";
-        $stmt = $this->conn->prepare($sql);
-        return $stmt->execute([':password' => $newPassEncode, ':email' => $email]) ?? false;
     }
 }
