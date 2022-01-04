@@ -24,6 +24,7 @@ body {
   max-height: 100vh;
   background: #f4f4f4;
   font-family: "Poppins", sans-serif;
+  position: relative;
 }
 
 a {
@@ -778,6 +779,118 @@ p:nth-child(2) .sta-amount {
   opacity: 0.7;
 }
 
+/* Sidebar menu */
+.sidebar-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(0, 0, 0, 0.4);
+  animation: sidebar-fadein 1.75s ease;
+  cursor: pointer;
+}
+@keyframes sidebar-fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.inner-sidebar-menu {
+  position: relative;
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1;
+  background: var(--primary-color);
+  animation: inner-sidebar-fadein 1.5s ease;
+  cursor: default;
+}
+@keyframes inner-sidebar-fadein {
+  0% {
+    opacity: 0;
+    height: 0;
+    transform: translateX(200%);
+  }
+  40% {
+    height: 100%;
+    opacity: 0;
+    transform: translateX(200%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%;
+  height: 5%;
+  display: flex;
+  align-self: flex-start;
+  justify-self: flex-start;
+  margin: 0 auto;
+}
+.close-sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 0.75rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+.close-sidebar:hover {
+  animation: rotation-close-btn 0.25s ease 2;
+}
+@keyframes rotation-close-btn {
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.sidebar-inner-content {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.clock {
+  width: 80%;
+  height: 40%;
+  background: rgb(19, 153, 60);
+}
+.toggler {
+  width: 15%;
+  height: 50px;
+  background: crimson;
+}
+.sidebar-nav-footer {
+  width: 96%;
+  height: 45%;
+  background: rgb(15, 71, 117);
+}
+
 /* Responsive */
 /* 1- MOBILE */
 @media screen and (max-width: 425px) {
@@ -906,6 +1019,11 @@ p:nth-child(2) .sta-amount {
     text-align: center;
     margin-bottom: 25px;
   }
+
+  /* Sidebar */
+  .inner-sidebar-menu {
+    width: 100%;
+  }
 }
 
 /* 2- TABLET */
@@ -947,5 +1065,10 @@ p:nth-child(2) .sta-amount {
     width: 100%;
     font-size: 0.6em;
     text-align: center;
+  }
+
+  /* Sidebar */
+  .inner-sidebar-menu {
+    width: 70%;
   }
 }

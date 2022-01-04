@@ -56,3 +56,27 @@ const logoutTimer = (min) => {
   return timer;
 };
 logoutTimer(10);
+
+// Sidebar
+const sidebar = document.querySelector(".sidebar-menu");
+const openSidebar = document.querySelector(".open-sidebar");
+const closeSidebar = document.querySelector(".close-sidebar");
+
+openSidebar.addEventListener("click", () => {
+  sidebar.classList.remove("hidden");
+});
+
+closeSidebar.addEventListener("click", () => {
+  sidebar.classList.add("hidden");
+});
+
+document.addEventListener("click", (event) => {
+  if (event.target == sidebar) {
+    sidebar.classList.add("hidden");
+  }
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key == "Escape") {
+    sidebar.classList.add("hidden");
+  }
+});

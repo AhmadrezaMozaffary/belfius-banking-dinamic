@@ -138,6 +138,18 @@
         </section>
     </section>
 
+    <manu class="sidebar-menu hidden">
+        <div class="inner-sidebar-menu">
+            <nav class="sidebar-nav">
+                <button class="close-sidebar">x</button>
+            </nav>
+            <section class="sidebar-inner-content">
+                <div class="clock">clock</div>
+                <div class="toggler">dark/light toggler</div>
+                <footer class="sidebar-nav-footer">contents</footer>
+            </section>
+        </div>
+    </manu>
 
     <!-- Alertify Library -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
