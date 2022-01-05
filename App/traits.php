@@ -120,14 +120,49 @@ trait notification
 /**
  * AssetsFunctionality trait
  */
-trait assetsFunctionality
+trait movementFunctionality
 {
-    public function isExistIdCard($idCard): object|bool
+    public function addMovement(int $userId, int $movement, bool $status): int|bool
     {
-        $sql = "SELECT * FROM users WHERE idCard = ?";
+        $sql = "INSERT INTO {$this->tableName} (user_id , movement, status) VALUES (? , ? , ?)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$idCard]);
-        return $stmt->fetch(PDO::FETCH_OBJ) ?? false;
+        $result = $stmt->execute([$userId, $movement, $status]) ?? false;
+        if ($result) {
+            return $this->conn->lastInsertId();
+        }
+        return false;
+    }
+
+    public function getMovementByUserID(int $userId)
+    {
+        $sql = "SELECT * FROM {$this->tableName} WHERE user_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$userId]);
+        return $stmt->fetchAll(\PDO::FETCH_OBJ) ?? null;
+    }
+
+    public function getMovementByID(int $id): ?object
+    {
+        $sql = "SELECT * FROM {$this->tableName} WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$id]);
+        return $stmt->fetch(\PDO::FETCH_OBJ) ?? null;
+    }
+
+    public function countOfMovements(int $userID, bool $status = null)
+    {
+        if (is_null($status)) {
+            $sql = "SELECT SUM(movement) AS numberOfMovements FROM {$this->tableName} WHERE user_id = ?";
+        } else {
+            $sql = "SELECT SUM(movement) AS numberOfMovements FROM {$this->tableName} WHERE user_id = ? AND status = ?";
+        }
+        $stmt = $this->conn->prepare($sql);
+        if (is_null($status)) {
+            $stmt->execute([$userID]);
+        } else {
+            $stmt->execute([$userID, $status]);
+        }
+        return $stmt->fetch(PDO::FETCH_OBJ)->numberOfMovements ?? null;
     }
 }
 

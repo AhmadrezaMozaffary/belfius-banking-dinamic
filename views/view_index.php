@@ -91,13 +91,13 @@
                     </section>
                     <!-- REQUEST LOAN -->
                     <section class="tools request">
-                        <form action="#">
+                        <form id="loanRequest" action="process/ajaxHandler.php" method="POST">
                             <label for="transfer" class="loan-error">Request Loan</label>
                             <div>
                                 <div>
-                                    <input type="number" name="id" class="input-tools req-input-amount" placeholder="Amount" />
+                                    <input type="number" name="amountOfMoney" class="input-tools req-input-amount" placeholder="Amount" />
                                 </div>
-                                <button type="submit" class="btn-tools">Request ✔️</button>
+                                <input type="submit" class="btn-tools" value="Request ✔️">
                             </div>
                         </form>
                     </section>
@@ -125,9 +125,9 @@
             <section class="panel-statistics">
                 <!-- STATISTICS LEFT -->
                 <div class="statistics-left">
-                    <p>in<span class="sta-amount income">4,442 €</span></p>
-                    <p>out<span class="sta-amount out">1,900 €</span></p>
-                    <p>interest<span class="sta-amount interest">1,221 €</span></p>
+                    <p>in<span class="sta-amount income"><?= $assets->countOfMovements($_SESSION['userLogin']['id'], 1)  ?>$</span></p>
+                    <p>out<span class="sta-amount out"><?= $assets->countOfMovements($_SESSION['userLogin']['id'], 0) ?>$</span></p>
+                    <p>all movements<span class="sta-amount interest"><?= $assets->countOfMovements($_SESSION['userLogin']['id']) ?>$</span></p>
                     <button class="btn sort-btn">&darr;sort</button>
                 </div>
 

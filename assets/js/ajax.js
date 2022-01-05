@@ -158,4 +158,33 @@ $(document).ready(function () {
     });
   });
 
+  // Ajax request for request loan
+  $("form#loanRequest").submit(function (event) {
+    event.preventDefault();
+    let form = $(this);
+    let url = form.attr("action");
+    let dataSerialize = form.serialize();
+    dataSerialize = decodeURIComponent(dataSerialize.replace(/%2F/g, " "));
+    $.ajax({
+      type: form.attr("method"),
+      url: url,
+      data: {
+        action: "loanRequest",
+        data: dataSerialize,
+      },
+      dataType: 'json',
+      success: function (response) {
+        // alert(response);
+        if (response["bool"] == true) {
+          alertify.success(response['msg']);
+          const amountOfMoney = document.querySelector('#amount-of-money');
+          amountOfMoney.textContent = `${response['money']}$`;
+          location.reload();
+        } else {
+          alertify.error(response['msg']);
+        }
+      }
+    });
+  });
+
 });

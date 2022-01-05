@@ -19,38 +19,26 @@ class Assets extends Connection
         $this->connection();
     }
 
-    use \assetsFunctionality;
+    use \movementFunctionality;
     use \userFunctionality;
 
-    public function addMovement(int $userId, int $movement, bool $status): int|bool
+
+    public function isExistIdCard($idCard): object|bool
     {
-        $sql = "INSERT INTO {$this->tableName} (user_id , movement, status) VALUES (? , ? , ?)";
+        $sql = "SELECT * FROM users WHERE idCard = ?";
         $stmt = $this->conn->prepare($sql);
-        $result = $stmt->execute([$userId, $movement, $status]) ?? false;
-        if ($result) {
-            return $this->conn->lastInsertId();
+        $stmt->execute([$idCard]);
+        return $stmt->fetch(\PDO::FETCH_OBJ) ?? false;
+    }
+
+    public function loanRequest($userID, $amountMoneyForLoan): bool
+    {
+        $countOfMovements = $this->countOfMovements($userID);
+        if ($countOfMovements * 10 >= $amountMoneyForLoan) {
+            $stmt = $this->conn->prepare("UPDATE users SET money = money + ? WHERE id = ?");
+            return $stmt->execute([$amountMoneyForLoan, $userID]) ?? false;
         }
         return false;
-    }
-
-    public function getMovementByUserID(int $userId)
-    {
-        $sql = "SELECT * FROM {$this->tableName} WHERE user_id = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$userId]);
-        return $stmt->fetchAll(\PDO::FETCH_OBJ) ?? null;
-    }
-
-    public function getMovementByID(int $id): ?object
-    {
-        $sql = "SELECT * FROM {$this->tableName} WHERE id = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$id]);
-        return $stmt->fetch(\PDO::FETCH_OBJ) ?? null;
-    }
-
-    public function requestLoan($money)
-    {
     }
 
     public function transferMoney($transactionOwnerID, $idCard, $money): bool
