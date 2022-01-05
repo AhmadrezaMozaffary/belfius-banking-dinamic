@@ -54,12 +54,13 @@
                 <section class="left-history">
                     <!-- HISTORY -->
                     <?php
-                    if (!is_null($movements[0]->movement)) {
-                        foreach ($movements as $mov) :
+                    if (!is_null($movements)) {
+                        foreach ($movements as $key => $mov) :
                     ?>
                             <div class="left-history-content">
                                 <div class="his-content-left">
                                     <p>
+                                        <span class="his-num"><?= $key + 1 ?></span>
                                         <span class="his-num"></span><span class="kind-of-his <?= $mov->status ? 'deposit' : 'withdraw' ?>"><?= $mov->status ? 'deposit' : 'withdraw' ?></span>
                                     </p>
                                     <p class="his-date"><?= $mov->created_at ?></p>

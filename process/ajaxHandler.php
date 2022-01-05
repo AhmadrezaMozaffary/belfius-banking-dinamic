@@ -32,10 +32,8 @@ if (isset($_POST['action'])) {
             'currencies' => explode("=", $exploade[4])[1],
         ];
         $auth = new Auth;
-        $assets = new Assets;
         if ($auth->signup($userData)['bool']) {
             echo $auth->login($userData);
-            $assets->addMovement(getUserId());
         } else {
             echo json_encode($auth->signup($userData));
         }
@@ -117,7 +115,15 @@ if (isset($_POST['action'])) {
                 $isExistIdCard = $assets->isExistIdCard($userData['idCard']);
                 if ($isExistIdCard != false) {
                     if ($assets->transferMoney(getUserId(), $userData['idCard'], $userData['amount'])) {
-                        echo json_encode(['money' => getCurrentUser()['money'], 'bool' => true, 'msg' => "The money was transferred to {$isExistIdCard->fullname}'s account."]);
+                        $senderMovement = $assets->getMovementByID($assets->addMovement(getUserId(), $userData['amount'], 0));
+                        $receiverMovement = $assets->addMovement($isExistIdCard->id, $userData['amount'], 1);
+                        echo json_encode([
+                            'money' => getCurrentUser()['money'], 'bool' => true,
+                            'msg' => "The money was transferred to {$isExistIdCard->fullname}'s account.",
+                            'amountMovement' => $senderMovement->movement,
+                            'statusMovement' => $senderMovement->status,
+                            'dateMovement'   => $senderMovement->created_at
+                        ]);
                     }
                 } else {
                     echo json_encode(['bool' => false, 'msg' => "This ID card isn't exist!"]);
