@@ -128,4 +128,33 @@ $(document).ready(function () {
       },
     });
   });
+
+
+  // Ajax request for transfering money
+  $("form#transferMoney").submit(function (event) {
+    event.preventDefault();
+    let form = $(this);
+    let url = form.attr("action");
+    let dataSerialize = form.serialize();
+    dataSerialize = decodeURIComponent(dataSerialize.replace(/%2F/g, " "));
+    $.ajax({
+      type: form.attr("method"),
+      url: url,
+      data: {
+        action: "transferMoney",
+        data: dataSerialize,
+      },
+      dataType: 'json',
+      success: function (response) {
+        if (response["bool"] == true) {
+          alertify.success(response['msg']);
+          const amountOfMoney = document.querySelector('#amount-of-money');
+          amountOfMoney.textContent = `${response['money']}$`;
+        } else {
+          alertify.error(response['msg']);
+        }
+      }
+    });
+  });
+
 });

@@ -12,6 +12,13 @@ function getUserId()
     }
 }
 
+function getCurrentUser(): ?array
+{
+    $user = new Assets;
+    $user = $user->getUserByEmail($_SESSION['userLogin']['email']);
+    return $user;
+}
+
 
 if (isset($_POST['action'])) {
 
@@ -89,4 +96,34 @@ if (isset($_POST['action'])) {
             echo json_encode(['msg' => "The code isn't correct , Please try again!", 'bool' => false]);
         }
     }
+
+
+    # Transfer money
+    if ($_POST['action'] == "transferMoney") :
+        $exploade = (explode('&', $_POST['data']));
+        $userData = [
+            'idCard' => explode("=", $exploade[0])[1],
+            'amount' => explode("=", $exploade[1])[1],
+        ];
+        // var_dump($userData);
+        if ($userData['idCard'] == $_SESSION['userLogin']['idCard']) {
+            echo json_encode(['bool' => false, 'msg' => 'You can not transfer money for yourself :D']);
+        } else {
+            if (getCurrentUser()['money'] - 10 < $userData['amount']) {
+                $lessOfAmount = $userData['amount'] - (getCurrentUser()['money'] - 10);
+                echo json_encode(['bool' => false, 'msg' => "Your money is not enough, unfortunately you have {$lessOfAmount}$ less:("]);
+            } else {
+                $assets = new Assets;
+                $isExistIdCard = $assets->isExistIdCard($userData['idCard']);
+                if ($isExistIdCard != false) {
+                    if ($assets->transferMoney(getUserId(), $userData['idCard'], $userData['amount'])) {
+                        echo json_encode(['money' => getCurrentUser()['money'], 'bool' => true, 'msg' => "The money was transferred to {$isExistIdCard->fullname}'s account."]);
+                    }
+                } else {
+                    echo json_encode(['bool' => false, 'msg' => "This ID card isn't exist!"]);
+                }
+            }
+        }
+
+    endif;
 }

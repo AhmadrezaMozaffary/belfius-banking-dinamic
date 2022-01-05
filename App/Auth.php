@@ -18,6 +18,7 @@ class Auth extends Connection implements \Authable
 {
     use \dataValidation;
     use \notification;
+    use \userFunctionality;
 
     private string $tableName = "users";
     private int $resetPasswordCode;
