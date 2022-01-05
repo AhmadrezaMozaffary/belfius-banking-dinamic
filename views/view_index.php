@@ -26,7 +26,7 @@
         <nav class="panel-nav">
             <div class="panel-inner-nav">
                 <div>
-                    <h3>Welcome, <span class="user-name"><?= $_SESSION['userLogin']['fullname'] ?></span></h3>
+                    <h3>Welcome, <span class="user-name"><?= $currentUser['fullname'] ?></span></h3>
                 </div>
                 <div class="open-sidebar">
                     <div class="sidebar-dots sidebar-dot1"></div>
@@ -43,9 +43,9 @@
                 <div class="left-about">
                     <h3>Current Balance</h3>
                     <h5>As of <span class="date">2021/03/07</span></h5>
-                    <h5>Your ID card : <abbr title="COPY!" class="id-card"><?= $_SESSION['userLogin']['idCard'] ?></abbr></h5>
+                    <h5>Your ID card : <abbr title="COPY!" class="id-card"><?= $currentUser['idCard'] ?></abbr></h5>
                 </div>
-                <h2 class="right-about"><?= $_SESSION['userLogin']['money'] ?>$</h2>
+                <h2 class="right-about" id="amount-of-money"><?= $currentUser['money'] ?>$</h2>
             </section>
 
             <!-- TOOLS -->
@@ -75,16 +75,16 @@
                 <section class="panel-tools">
                     <!-- TRANSFER MONEY -->
                     <section class="tools transfer">
-                        <form>
+                        <form id="transferMoney" action="process/ajaxHandler.php" method="POST">
                             <label for="transfer">Transfer Money</label>
                             <div>
                                 <div>
-                                    <input type="text" name="id" class="input-tools input-id" placeholder="ID" />
+                                    <input type="number" name="idCard" class="input-tools input-id" min="1000000000000000" max="9999999999999999" placeholder="Destination ID" />
                                 </div>
                                 <div>
-                                    <input type="number" name="amount" class="input-tools transfer-input-amount" placeholder="Amount" />
+                                    <input type="number" name="amountOfMoney" class="input-tools transfer-input-amount" placeholder="Amount of money" />
                                 </div>
-                                <button type="submit" class="btn-tools">Transfer ✔️</button>
+                                <input type="submit" class="btn-tools" value="Transfer ✔️">
                             </div>
                         </form>
                     </section>

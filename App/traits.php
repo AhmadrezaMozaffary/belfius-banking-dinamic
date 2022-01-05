@@ -43,19 +43,7 @@ trait dataValidation
         return false;
     }
 
-    /**
-     * get user information from user
-     *
-     * @param [sting] $email
-     * @return array
-     */
-    public function getUserByEmail($email): array
-    {
-        $sql = "SELECT * FROM {$this->tableName} WHERE email = ?";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute([$email]);
-        return $stmt->fetch(PDO::FETCH_ASSOC) ?? null;
-    }
+
 
     /**
      * update Password method use for reset password
@@ -126,5 +114,40 @@ trait notification
             die("Email Not Sended : " . $th->getMessage());
         }
         $mail->smtpClose();
+    }
+}
+
+/**
+ * AssetsFunctionality trait
+ */
+trait assetsFunctionality
+{
+    public function isExistIdCard($idCard): object|bool
+    {
+        $sql = "SELECT * FROM users WHERE idCard = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$idCard]);
+        return $stmt->fetch(PDO::FETCH_OBJ) ?? false;
+    }
+}
+
+
+/**
+ * 
+ */
+trait userFunctionality
+{
+    /**
+     * get user information from user
+     *
+     * @param [sting] $email
+     * @return array
+     */
+    public function getUserByEmail($email): ?array
+    {
+        $sql = "SELECT * FROM users WHERE email = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([$email]);
+        return $stmt->fetch(PDO::FETCH_ASSOC) ?? null;
     }
 }

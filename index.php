@@ -11,4 +11,7 @@ if (!isset($_SESSION['userLogin']) || is_null($_SESSION['userLogin'])) {
 
 $movements = $assets->getMovement($_SESSION['userLogin']['id']);
 
+$currentUser = (new Assets)->getUserByEmail($_SESSION['userLogin']['email']);
+
+
 include "views/view_index.php";

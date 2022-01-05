@@ -2,7 +2,6 @@
 
 namespace App;
 
-use PDO;
 
 include_once "traits.php";
 
@@ -19,6 +18,9 @@ class Assets extends Connection
     {
         $this->connection();
     }
+
+    use \assetsFunctionality;
+    use \userFunctionality;
 
     public function addMovement(int $userId, int $movement = null, bool $status = null): bool
     {
@@ -40,13 +42,26 @@ class Assets extends Connection
         $sql = "SELECT * FROM {$this->tableName} WHERE user_id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$userId]);
-        return $stmt->fetchAll(PDO::FETCH_OBJ) ?? null;
+        return $stmt->fetchAll(\PDO::FETCH_OBJ) ?? null;
     }
 
     public function requestLoan($money)
     {
     }
-    public function transferMoney($idCard, $money)
+
+    public function transferMoney($transactionOwnerID, $idCard, $money): bool
     {
+        $sql = "UPDATE users SET money = money + :money WHERE idCard = :idCard";
+        $stmt = $this->conn->prepare($sql);
+
+        $sqlOwner = "UPDATE users SET money = money - :money WHERE id = :ownerId";
+        $stmtOwner = $this->conn->prepare($sqlOwner);
+
+        $destinaitonResult = $stmt->execute([':money' => $money, ':idCard' => $idCard]) ?? false;
+        $ownerResult = $stmtOwner->execute([':money' => $money, ':ownerId' => $transactionOwnerID]) ?? false;
+        if ($destinaitonResult and $ownerResult) {
+            return true;
+        }
+        return false;
     }
 }
