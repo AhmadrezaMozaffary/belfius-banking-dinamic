@@ -9,7 +9,7 @@ if (!isset($_SESSION['userLogin']) || is_null($_SESSION['userLogin'])) {
 }
 
 
-$movements = $assets->getMovement($_SESSION['userLogin']['id']);
+$movements = $assets->getMovementByUserID($_SESSION['userLogin']['id']);
 
 $currentUser = (new Assets)->getUserByEmail($_SESSION['userLogin']['email']);
 

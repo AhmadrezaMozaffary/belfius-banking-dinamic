@@ -150,6 +150,7 @@ $(document).ready(function () {
           alertify.success(response['msg']);
           const amountOfMoney = document.querySelector('#amount-of-money');
           amountOfMoney.textContent = `${response['money']}$`;
+          location.reload();
         } else {
           alertify.error(response['msg']);
         }
