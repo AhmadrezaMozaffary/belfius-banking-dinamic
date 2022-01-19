@@ -115,8 +115,8 @@ if (isset($_POST['action'])) {
                 $isExistIdCard = $assets->isExistIdCard($userData['idCard']);
                 if ($isExistIdCard != false) {
                     if ($assets->transferMoney(getUserId(), $userData['idCard'], $userData['amount'])) {
-                        $senderMovement = $assets->getMovementByID($assets->addMovement(getUserId(), $userData['amount'], 0));
-                        $receiverMovement = $assets->addMovement($isExistIdCard->id, $userData['amount'], 1);
+                        $senderMovement = $assets->getMovementByID($assets->addMovement(getUserId(), $userData['amount'], intval(0)));
+                        $receiverMovement = $assets->addMovement($isExistIdCard->id, $userData['amount'], intval(1));
                         echo json_encode([
                             'money' => getCurrentUser()['money'], 'bool' => true,
                             'msg' => "The money was transferred to {$isExistIdCard->fullname}'s account.",

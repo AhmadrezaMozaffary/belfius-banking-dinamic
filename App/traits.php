@@ -122,12 +122,11 @@ trait notification
  */
 trait movementFunctionality
 {
-    public function addMovement(int $userId, int $movement, bool $status): int|bool
+    public function addMovement(int $userId, int $movement, $status): int|bool
     {
-        $sql = "INSERT INTO {$this->tableName} (user_id , movement, status) VALUES (? , ? , ?)";
+        $sql = "INSERT INTO assets (user_id , movement, status) VALUES (? , ? , ?)";
         $stmt = $this->conn->prepare($sql);
-        $result = $stmt->execute([$userId, $movement, $status]) ?? false;
-        if ($result) {
+        if ($stmt->execute([$userId, $movement, $status])) {
             return $this->conn->lastInsertId();
         }
         return false;
