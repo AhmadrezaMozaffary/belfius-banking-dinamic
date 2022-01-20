@@ -1,3 +1,19 @@
+
+// Countdown on Login
+// const countdownLogin = (msgPartOne, countdown, msgPartTwo = ".") => {
+//   let time = countdown;
+//   const loginMessage = alertify.success(
+//     `${msgPartOne} ${time} ${msgPartTwo}`,
+//     time,
+//     () => {
+//       clearInterval(countdownFunc);
+//     }
+//   );
+//   const countdownFunc = setInterval(() => {
+//     loginMessage.setContent(`${msgPartOne} ${--time} ${msgPartTwo}`);
+//   }, 1000);
+// };
+
 /**
  * jQuery Code Fore Ajax
  */
@@ -185,6 +201,46 @@ $(document).ready(function () {
         }
       }
     });
+  });
+
+
+  // Logout ajax request to process/ajaxHandelr.php
+  $("form#confirmLogout").submit(function (event) {
+    event.preventDefault();
+    let form = $(this);
+    let url = form.attr("action");
+    let dataSerialize = form.serialize();
+    dataSerialize = decodeURIComponent(dataSerialize.replace(/%2F/g, " "));
+    $.ajax({
+      type: form.attr("method"),
+      url: url,
+      data: {
+        action: "confirmLogout",
+        data: dataSerialize,
+      },
+      dataType: 'json',
+      success: function (response) {
+        // alert(response);
+        console.log(response);
+        if (response["bool"] == true) {
+          const countdownDuration = 3;
+          const emoji = "😎" ? "😎" : ":D";
+          countdownLogin(
+            `You will logout in`,
+            countdownDuration,
+            `s ${emoji}`
+          );
+          // countdownLogin('Ahmad', 3);
+          setTimeout(() => {
+            window.location.href = "http://localhost/bank_project/";
+          }, countdownDuration * 1000);
+        } else {
+          alertify.error(response['msg']);
+        }
+      }
+    });
+
+
   });
 
 });

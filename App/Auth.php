@@ -134,4 +134,14 @@ class Auth extends Connection implements \Authable
         }
         return $registerInfo;
     }
+
+    /**
+     * lougout function
+     *
+     * @return void
+     */
+    public function lougout(): void
+    {
+        unset($_SESSION['userLogin']);
+    }
 }

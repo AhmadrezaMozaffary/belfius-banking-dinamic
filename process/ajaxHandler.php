@@ -161,4 +161,25 @@ if (isset($_POST['action'])) {
             }
         }
     }
+
+    // Logout request
+    if ($_POST['action'] == "confirmLogout") {
+        $exploade = (explode('&', $_POST['data']));
+        $userData = (object)[
+            'email' => explode("=", $exploade[0])[1],
+            'pass' => explode("=", $exploade[1])[1],
+        ];
+        $authentication = new Auth;
+        $currentUser = (object) getCurrentUser();
+        if ($userData->email == $currentUser->email) {
+            if (password_verify($userData->pass, $currentUser->password)) {
+                $authentication->lougout();
+                echo json_encode(['bool' => true]);
+            } else {
+                echo json_encode(['bool' => false, 'msg' => "Your Password isn't currect!"]);
+            }
+        } else {
+            echo json_encode(['bool' => false, 'msg' => "Your email isn't currect!"]);
+        }
+    }
 }
