@@ -105,18 +105,16 @@
                     </section>
                     <!-- CONFIRM LOGOUT -->
                     <section class="tools confirm-logout">
-                        <form action="#">
+                        <form id="confirmLogout" action="process/ajaxHandler.php" method="POST">
                             <label for="confirm-logout" class="logout-error">Close Account</label>
                             <div>
                                 <div>
-                                    <input type="text" name="user" class="input-tools user-confirm" placeholder="Confirm User" />
+                                    <input type="email" name="email" class="input-tools user-confirm" placeholder="Your email" />
                                 </div>
                                 <div>
-                                    <input type="password" name="pass" class="input-tools pass-confirm" placeholder="Confirm Pass" />
+                                    <input type="password" name="pass" class="input-tools pass-confirm" placeholder="Your Pass" />
                                 </div>
-                                <button type="submit" class="btn-tools logout-btn">
-                                    Close ✔️
-                                </button>
+                                <input type="submit" class="btn-tools logout-btn" value="Close ✔️">
                             </div>
                         </form>
                     </section>
@@ -157,7 +155,7 @@
     <!-- Alertify Library -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <!-- Main JS -->
-    <script src="assets/js/app-index.js"></script>
+    <script src="assets/js/countDowner.js"></script>
     <!-- AJAX Handler -->
     <script src="assets/js/ajax.js"></script>
 
