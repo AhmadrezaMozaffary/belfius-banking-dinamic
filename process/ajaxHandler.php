@@ -103,33 +103,39 @@ if (isset($_POST['action'])) {
             'idCard' => explode("=", $exploade[0])[1],
             'amount' => explode("=", $exploade[1])[1],
         ];
-        // var_dump($userData);
-        if ($userData['idCard'] == $_SESSION['userLogin']['idCard']) {
-            echo json_encode(['bool' => false, 'msg' => 'You can not transfer money for yourself :D']);
+        if ($userData['amount'] < 1) {
+            echo json_encode(['bool' => false, 'msg' => 'You can not transfer money less than 1 dollar :D']);
         } else {
-            if (getCurrentUser()['money'] - 10 < $userData['amount']) {
-                $lessOfAmount = $userData['amount'] - (getCurrentUser()['money'] - 10);
-                echo json_encode(['bool' => false, 'msg' => "Your money is not enough, unfortunately you have {$lessOfAmount}$ less:("]);
+            if ($userData['idCard'] == $_SESSION['userLogin']['idCard']) {
+                echo json_encode(['bool' => false, 'msg' => 'You can not transfer money for yourself :D']);
             } else {
-                $assets = new Assets;
-                $isExistIdCard = $assets->isExistIdCard($userData['idCard']);
-                if ($isExistIdCard != false) {
-                    if ($assets->transferMoney(getUserId(), $userData['idCard'], $userData['amount'])) {
-                        $senderMovement = $assets->getMovementByID($assets->addMovement(getUserId(), $userData['amount'], intval(0)));
-                        $receiverMovement = $assets->addMovement($isExistIdCard->id, $userData['amount'], intval(1));
-                        echo json_encode([
-                            'money' => getCurrentUser()['money'], 'bool' => true,
-                            'msg' => "The money was transferred to {$isExistIdCard->fullname}'s account.",
-                            'amountMovement' => $senderMovement->movement,
-                            'statusMovement' => $senderMovement->status,
-                            'dateMovement'   => $senderMovement->created_at
-                        ]);
-                    }
+                if (getCurrentUser()['money'] - 10 < $userData['amount']) {
+                    $lessOfAmount = $userData['amount'] - (getCurrentUser()['money'] - 10);
+                    echo json_encode(['bool' => false, 'msg' => "Your money is not enough, unfortunately you have {$lessOfAmount}$ less:("]);
                 } else {
-                    echo json_encode(['bool' => false, 'msg' => "This ID card isn't exist!"]);
+                    $assets = new Assets;
+                    $isExistIdCard = $assets->isExistIdCard($userData['idCard']);
+                    if ($isExistIdCard != false) {
+                        if ($assets->transferMoney(getUserId(), $userData['idCard'], $userData['amount'])) {
+                            $senderMovement = $assets->getMovementByID($assets->addMovement(getUserId(), $userData['amount'], intval(0)));
+                            $receiverMovement = $assets->addMovement($isExistIdCard->id, $userData['amount'], intval(1));
+                            echo json_encode([
+                                'money' => getCurrentUser()['money'], 'bool' => true,
+                                'msg' => "The money was transferred to {$isExistIdCard->fullname}'s account.",
+                                'amountMovement' => $senderMovement->movement,
+                                'statusMovement' => $senderMovement->status,
+                                'dateMovement'   => $senderMovement->created_at
+                            ]);
+                        }
+                    } else {
+                        echo json_encode(['bool' => false, 'msg' => "This ID card isn't exist!"]);
+                    }
                 }
             }
         }
+
+
+
     endif;
 
 
@@ -138,7 +144,7 @@ if (isset($_POST['action'])) {
         $money = explode('=', $_POST['data'])[1];
         $assets = new Assets;
         if ($assets->loanRequest(getUserId(), $money)) {
-            $currentMovement = $assets->getMovementByID($assets->addMovement(getUserId(), $money, 1));
+            $currentMovement = $assets->getMovementByID($assets->addMovement(getUserId(), $money, intval(1)));
             echo json_encode([
                 'bool' => true,
                 'msg'  => 'Your request has been approved :D',

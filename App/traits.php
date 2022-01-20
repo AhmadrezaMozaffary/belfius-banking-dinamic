@@ -134,7 +134,7 @@ trait movementFunctionality
 
     public function getMovementByUserID(int $userId)
     {
-        $sql = "SELECT * FROM {$this->tableName} WHERE user_id = ?";
+        $sql = "SELECT * FROM {$this->tableName} WHERE user_id = ? ORDER BY created_at DESC";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$userId]);
         return $stmt->fetchAll(\PDO::FETCH_OBJ) ?? null;
