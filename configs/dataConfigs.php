@@ -6,4 +6,10 @@ define('CURRENCY_CONFIG', [
     2 => 'IRR'
 ]);
 
+define('CURRENCY_CONFIG_SIGN', [
+    0 => "$",
+    1 => '€',
+    2 => 'R'
+]);
+
 define('BASE_URL', 'http://localhost/bank_project/');
