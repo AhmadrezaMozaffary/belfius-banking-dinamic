@@ -26,7 +26,7 @@
         <nav class="panel-nav">
             <div class="panel-inner-nav">
                 <div>
-                    <h3>Welcome, <span class="user-name"><?= $currentUser['fullname'] ?></span></h3>
+                    <h3>Welcome, <span class="user-name" data-currency="<?= CURRENCY_CONFIG_SIGN[$currentUser['curency']] ?>"><?= $currentUser['fullname'] ?></span></h3>
                 </div>
                 <div class="open-sidebar">
                     <div class="sidebar-dots sidebar-dot1"></div>
@@ -55,12 +55,13 @@
                     <!-- HISTORY -->
                     <?php
                     if (!is_null($movements)) {
+                        $amountOfMovements = sizeof($movements);
                         foreach ($movements as $key => $mov) :
                     ?>
                             <div class="left-history-content">
                                 <div class="his-content-left">
                                     <p>
-                                        <span class="his-num"><?= $key + 1 ?></span>
+                                        <span class="his-num"><?= $amountOfMovements ?></span>
                                         <span class="his-num"></span><span class="kind-of-his <?= $mov->status ? 'deposit' : 'withdraw' ?>"><?= $mov->status ? 'deposit' : 'withdraw' ?></span>
                                     </p>
                                     <p class="his-date"><?= $mov->created_at ?></p>
@@ -68,6 +69,7 @@
                                 <p class="n-money"><?= $mov->status ? '+' : '-' ?><?= $mov->movement ?></p>
                             </div>
                     <?php
+                            $amountOfMovements--;
                         endforeach;
                     }
                     ?>

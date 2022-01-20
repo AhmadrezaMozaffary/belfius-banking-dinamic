@@ -3,7 +3,7 @@
 use App\Assets;
 
 include "autoload.php";
-
+include "configs/dataConfigs.php";
 $assets = new Assets;
 
 if (!isset($_SESSION['userLogin']) || is_null($_SESSION['userLogin'])) {
