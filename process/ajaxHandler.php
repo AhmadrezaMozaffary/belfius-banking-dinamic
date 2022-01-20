@@ -143,18 +143,22 @@ if (isset($_POST['action'])) {
     if ($_POST['action'] == "loanRequest") {
         $money = explode('=', $_POST['data'])[1];
         $assets = new Assets;
-        if ($assets->loanRequest(getUserId(), $money)) {
-            $currentMovement = $assets->getMovementByID($assets->addMovement(getUserId(), $money, intval(1)));
-            echo json_encode([
-                'bool' => true,
-                'msg'  => 'Your request has been approved :D',
-                'money' => getCurrentUser()['money'],
-                'amountMovement' => $currentMovement->movement,
-                'statusMovement' => $currentMovement->status,
-                'dateMovement' => $currentMovement->created_at,
-            ]);
+        if ($money < 1) {
+            echo json_encode(['bool' => false, 'msg' => "You can not borrow less than one dollar!"]);
         } else {
-            echo json_encode(['bool' => false, 'msg' => "You can't have this loan, Your movements isn't enough!"]);
+            if ($assets->loanRequest(getUserId(), $money)) {
+                $currentMovement = $assets->getMovementByID($assets->addMovement(getUserId(), $money, intval(1)));
+                echo json_encode([
+                    'bool' => true,
+                    'msg'  => 'Your request has been approved :D',
+                    'money' => getCurrentUser()['money'],
+                    'amountMovement' => $currentMovement->movement,
+                    'statusMovement' => $currentMovement->status,
+                    'dateMovement' => $currentMovement->created_at,
+                ]);
+            } else {
+                echo json_encode(['bool' => false, 'msg' => "You can't have this loan, Your movements isn't enough!"]);
+            }
         }
     }
 }
