@@ -40,6 +40,10 @@
                 <form id="loginForm" action="process/ajaxHandler.php" method="POST">
                     <input type="Email" name="email" placeholder="Email" class="username" required />
                     <input type="password" name="password" placeholder="password" class="pass" required />
+                    <div class="showpassword-container">
+                        <label for="showpassword" style="opacity: 0.7;">Show Password</label>
+                        <input type="checkbox" name="showpassword" class="show-password">
+                    </div>
                     <button class="btn-reset" type="button">Forgot password?</button>
                     <section class="btn-container">
                         <input type="submit" class="btn btn-primary second-login-btn" value="Login" style="width: 50%;">

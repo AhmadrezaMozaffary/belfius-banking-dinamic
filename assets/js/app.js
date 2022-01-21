@@ -20,6 +20,7 @@ const emailInputReset = document.querySelector(
 const passInputReset = document.querySelector(
   ".input-content-resetpassword-pass"
 );
+const showPasswordCheckbox = document.querySelector(".show-password");
 
 /*
  Showing ALerts
@@ -74,8 +75,21 @@ document.addEventListener("keydown", (event) => {
 
 const submitBtnRestModal = document.querySelector(".btn-open-code-input");
 submitBtnRestModal.addEventListener("click", (e) => {
-  if (emailInputReset.value.length != 0 && passInputReset.value.length != 0) {
+  if (
+    emailInputReset.value.match(
+      /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+    ) &&
+    passInputReset.value.length != 0
+  ) {
     resetPasswordCodeInput.classList.remove("hidden");
+  } else if (
+    !emailInputReset.value.match(
+      /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+    ) &&
+    emailInputReset.value.length != 0
+  ) {
+    e.preventDefault();
+    errorAlert("E-mail is not valid !");
   } else {
     e.preventDefault();
     errorAlert("Please fill out the form ⛔️");
@@ -237,6 +251,13 @@ firstSignupBtn.addEventListener("click", () => {
   btnContainer.classList.toggle("hidden");
   signupSection.classList.toggle("hidden");
   loginMessage.textContent = "Sign up ";
+});
+showPasswordCheckbox.addEventListener("click", () => {
+  if (showPasswordCheckbox.checked) {
+    inputPass.setAttribute("type", "text");
+  } else {
+    inputPass.setAttribute("type", "password");
+  }
 });
 
 // let currentAcc, timer;
