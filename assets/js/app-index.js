@@ -63,6 +63,7 @@ const logoutTimer = (min) => {
   return timer;
 };
 logoutTimer(10);
+console.log(logoutTimer(10));
 
 // Sidebar
 const sidebar = document.querySelector(".sidebar-menu");
@@ -89,14 +90,14 @@ document.addEventListener("keydown", (event) => {
 });
 
 // Add currency sign based on selected currency on signup page
+const addCurrencySign = (targetEl) => {
+  targetEl.textContent = `${targetEl.textContent}${logedinUsername.dataset.currency}`;
+};
 //for total balance
-totalAmount.textContent = `${totalAmount.textContent}${logedinUsername.dataset.currency}`;
+addCurrencySign(totalAmount);
 // for all movements
-allMovementsValue.forEach(
-  (movement) =>
-    (movement.textContent = `${movement.textContent}${logedinUsername.dataset.currency}`)
-);
+allMovementsValue.forEach((movement) => addCurrencySign(movement));
 // for statistics
-totalIncome.textContent = `${totalIncome.textContent}${logedinUsername.dataset.currency}`;
-totalOut.textContent = `${totalOut.textContent}${logedinUsername.dataset.currency}`;
-totalIntrest.textContent = `${totalIntrest.textContent}${logedinUsername.dataset.currency}`;
+addCurrencySign(totalIncome);
+addCurrencySign(totalOut);
+addCurrencySign(totalIntrest);
