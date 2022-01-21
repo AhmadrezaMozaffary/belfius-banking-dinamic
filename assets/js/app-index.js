@@ -1,5 +1,12 @@
 "use strict";
 
+const totalAmount = document.querySelector("#amount-of-money");
+const logedinUsername = document.querySelector(".user-name");
+const allMovementsValue = document.querySelectorAll(".n-money");
+const totalIncome = document.querySelector(".income");
+const totalOut = document.querySelector(".out");
+const totalIntrest = document.querySelector(".interest");
+
 //Calculate current date and time and add to DOM based on locale
 // Get client locale
 const clientLocale = navigator.language || "en-US"; // Clien locale || default value
@@ -80,3 +87,16 @@ document.addEventListener("keydown", (event) => {
     sidebar.classList.add("hidden");
   }
 });
+
+// Add currency sign based on selected currency on signup page
+//for total balance
+totalAmount.textContent = `${totalAmount.textContent}${logedinUsername.dataset.currency}`;
+// for all movements
+allMovementsValue.forEach(
+  (movement) =>
+    (movement.textContent = `${movement.textContent}${logedinUsername.dataset.currency}`)
+);
+// for statistics
+totalIncome.textContent = `${totalIncome.textContent}${logedinUsername.dataset.currency}`;
+totalOut.textContent = `${totalOut.textContent}${logedinUsername.dataset.currency}`;
+totalIntrest.textContent = `${totalIntrest.textContent}${logedinUsername.dataset.currency}`;

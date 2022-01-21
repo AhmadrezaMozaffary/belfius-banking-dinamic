@@ -45,7 +45,7 @@
                     <h5>As of <span class="date">2021/03/07</span></h5>
                     <h5>Your ID card : <abbr title="COPY!" class="id-card"><?= $currentUser['idCard'] ?></abbr></h5>
                 </div>
-                <h2 class="right-about" id="amount-of-money"><?= $currentUser['money'] ?>$</h2>
+                <h2 class="right-about" id="amount-of-money"><?= $currentUser['money'] ?></h2>
             </section>
 
             <!-- TOOLS -->
@@ -125,9 +125,9 @@
             <section class="panel-statistics">
                 <!-- STATISTICS LEFT -->
                 <div class="statistics-left">
-                    <p>in<span class="sta-amount income"><?= $assets->countOfMovements($_SESSION['userLogin']['id'], 1)  ?>$</span></p>
-                    <p>out<span class="sta-amount out"><?= $assets->countOfMovements($_SESSION['userLogin']['id'], 0) ?>$</span></p>
-                    <p>all movements<span class="sta-amount interest"><?= $assets->countOfMovements($_SESSION['userLogin']['id']) ?>$</span></p>
+                    <p>in<span class="sta-amount income"><?= $assets->countOfMovements($_SESSION['userLogin']['id'], 1)  ?></span></p>
+                    <p>out<span class="sta-amount out"><?= $assets->countOfMovements($_SESSION['userLogin']['id'], 0) ?></span></p>
+                    <p>all movements<span class="sta-amount interest"><?= $assets->countOfMovements($_SESSION['userLogin']['id']) ?></span></p>
                     <button class="btn sort-btn">&darr;sort</button>
                 </div>
 
