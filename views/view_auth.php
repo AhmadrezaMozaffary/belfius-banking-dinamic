@@ -79,8 +79,8 @@
                     x
                 </button>
                 <form id="resetPasswordForm" action="process/ajaxHandler.php" method="POST">
-                    <input name="email" type="email" placeholder="Email" required>
-                    <input name="password" type="password" placeholder="New password" required>
+                    <input class="input-content-resetpassword-email" name="email" type="email" placeholder="Email" required>
+                    <input class="input-content-resetpassword-pass" name="password" type="password" placeholder="New password" required>
                     <input type="submit" class="btn btn-primary btn-open-code-input">
                 </form>
                 <div class="seprater-line"></div>

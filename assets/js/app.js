@@ -14,14 +14,38 @@ const loginHeader = document.querySelector(".login-header");
 const loginMessage = document.querySelector(".in-msg");
 const backBtn1 = document.querySelector(".back-btn1");
 const backBtn2 = document.querySelector(".back-btn2");
+const emailInputReset = document.querySelector(
+  ".input-content-resetpassword-email"
+);
+const passInputReset = document.querySelector(
+  ".input-content-resetpassword-pass"
+);
+
+/*
+ Showing ALerts
+*/
+// Showing Error Alerts with Alertify
+const errorAlert = (msg) => {
+  alertify.error(msg);
+};
+
+// Showing Success Alerts with Alertify
+const successAlert = (msg) => {
+  alertify.success(msg);
+};
 
 //Restpassword ( Modal window )
 const btnResetPassword = document.querySelector(".btn-reset");
+
 const closeResetPassworModal = document.querySelector(".x-btn");
 const modalResetPass = document.querySelector(".modal-reset-pass-container");
 const resetPasswordCodeInput = document.querySelector("#resetPasswordCodeForm");
 
 btnResetPassword.addEventListener("click", () => {
+  if (inputUser.value) {
+    emailInputReset.value = inputUser.value;
+    modalResetPass.classList.remove("hidden");
+  }
   modalResetPass.classList.remove("hidden");
 });
 closeResetPassworModal.addEventListener("click", () => {
@@ -42,24 +66,16 @@ document.addEventListener("keydown", (event) => {
 });
 
 // Open code submit form
+
 const submitBtnRestModal = document.querySelector(".btn-open-code-input");
-submitBtnRestModal.addEventListener("click", () => {
-  resetPasswordCodeInput.classList.remove("hidden");
+submitBtnRestModal.addEventListener("click", (e) => {
+  if (emailInputReset.value.length != 0 && passInputReset.value.length != 0) {
+    resetPasswordCodeInput.classList.remove("hidden");
+  } else {
+    e.preventDefault();
+    errorAlert("Please fill out the form ⛔️");
+  }
 });
-
-/*
- Showing ALerts
-*/
-// Showing Error Alerts with Alertify
-const errorAlert = (msg) => {
-  alertify.error(msg);
-};
-
-// Showing Success Alerts with Alertify
-const successAlert = (msg) => {
-  alertify.success(msg);
-};
-
 
 const userPanel = document.querySelector(".panel");
 const btnContainer = document.querySelector(".btn-container");
@@ -85,7 +101,6 @@ const lableIncome = document.querySelector(".income");
 const lableOut = document.querySelector(".out");
 const lableInterest = document.querySelector(".interest");
 const sortBtn = document.querySelector(".sort-btn");
-
 
 // Calculate and Display Movements Day
 const calcDisplayMovDays = function (date, locale) {
@@ -189,7 +204,6 @@ const updateUI = function (acc) {
   calcDisplayBalance(acc);
   calcDisplaySummary(acc);
 };
-
 
 const displayMsg = function (target, msg, msgColor, shadowColor = "white") {
   target.style.color = msgColor;
