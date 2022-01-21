@@ -21,6 +21,7 @@ const passInputReset = document.querySelector(
   ".input-content-resetpassword-pass"
 );
 const showPasswordCheckbox = document.querySelector(".show-password");
+const isValidEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
 /*
  Showing ALerts
@@ -43,10 +44,7 @@ const modalResetPass = document.querySelector(".modal-reset-pass-container");
 const resetPasswordCodeInput = document.querySelector("#resetPasswordCodeForm");
 
 btnResetPassword.addEventListener("click", () => {
-  if (
-    inputUser.value &&
-    inputUser.value.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)
-  ) {
+  if (inputUser.value && inputUser.value.match(isValidEmail)) {
     emailInputReset.value = inputUser.value;
     modalResetPass.classList.remove("hidden");
   } else {
@@ -54,20 +52,25 @@ btnResetPassword.addEventListener("click", () => {
     modalResetPass.classList.remove("hidden");
   }
 });
-closeResetPassworModal.addEventListener("click", () => {
+
+const defaultResetpassForm = () => {
   modalResetPass.classList.add("hidden");
   resetPasswordCodeInput.classList.add("hidden");
+  emailInputReset.value = "";
+  passInputReset.value = "";
+};
+
+closeResetPassworModal.addEventListener("click", () => {
+  defaultResetpassForm();
 });
 document.addEventListener("click", (event) => {
   if (event.target == modalResetPass) {
-    modalResetPass.classList.add("hidden");
-    resetPasswordCodeInput.classList.add("hidden");
+    defaultResetpassForm();
   }
 });
 document.addEventListener("keydown", (event) => {
   if (event.key == "Escape") {
-    modalResetPass.classList.add("hidden");
-    resetPasswordCodeInput.classList.add("hidden");
+    defaultResetpassForm();
   }
 });
 
@@ -76,19 +79,16 @@ document.addEventListener("keydown", (event) => {
 const submitBtnRestModal = document.querySelector(".btn-open-code-input");
 submitBtnRestModal.addEventListener("click", (e) => {
   if (
-    emailInputReset.value.match(
-      /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
-    ) &&
+    emailInputReset.value.match(isValidEmail) &&
     passInputReset.value.length != 0
   ) {
     resetPasswordCodeInput.classList.remove("hidden");
   } else if (
-    !emailInputReset.value.match(
-      /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
-    ) &&
+    !emailInputReset.value.match(isValidEmail) &&
     emailInputReset.value.length != 0
   ) {
     e.preventDefault();
+    emailInputReset.value = "";
     errorAlert("E-mail is not valid !");
   } else {
     e.preventDefault();
@@ -257,6 +257,14 @@ showPasswordCheckbox.addEventListener("click", () => {
     inputPass.setAttribute("type", "text");
   } else {
     inputPass.setAttribute("type", "password");
+  }
+});
+
+secondSignupBtn.addEventListener("click", (e) => {
+  const signupEmailVal = document.querySelector(".signup-email").value;
+  if (!signupEmailVal.match(isValidEmail)) {
+    e.preventDefault();
+    errorAlert("E-mail is not valid !");
   }
 });
 

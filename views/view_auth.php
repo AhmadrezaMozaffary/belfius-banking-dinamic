@@ -55,7 +55,7 @@
             <!-- SIGN UP -->
             <section class="signup hidden">
                 <form id="signupForm" action="process/ajaxHandler.php" method="POST">
-                    <input type="email" name="email" placeholder="Email" required />
+                    <input type="email" name="email" placeholder="Email" class="signup-email" required />
                     <input type="text" name="fullname" placeholder="Full name" required />
                     <input type="password" name="password" placeholder="Password" required />
                     <input type="password" name="resetPassword" placeholder="Confirm password" required />
