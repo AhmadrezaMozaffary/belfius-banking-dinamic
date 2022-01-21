@@ -42,11 +42,16 @@ const modalResetPass = document.querySelector(".modal-reset-pass-container");
 const resetPasswordCodeInput = document.querySelector("#resetPasswordCodeForm");
 
 btnResetPassword.addEventListener("click", () => {
-  if (inputUser.value) {
+  if (
+    inputUser.value &&
+    inputUser.value.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)
+  ) {
     emailInputReset.value = inputUser.value;
     modalResetPass.classList.remove("hidden");
+  } else {
+    inputUser.value = "";
+    modalResetPass.classList.remove("hidden");
   }
-  modalResetPass.classList.remove("hidden");
 });
 closeResetPassworModal.addEventListener("click", () => {
   modalResetPass.classList.add("hidden");
