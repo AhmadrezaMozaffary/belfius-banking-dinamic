@@ -95,6 +95,7 @@
     <!-- Alertify Library -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <!-- Main JS -->
+    <script src="assets/js/countDowner.js"></script>
     <script src="assets/js/app.js"></script>
     <!-- AJAX Handler -->
     <script src="assets/js/ajax.js"></script>
