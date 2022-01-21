@@ -63,7 +63,6 @@ const logoutTimer = (min) => {
   return timer;
 };
 logoutTimer(10);
-console.log(logoutTimer(10));
 
 // Sidebar
 const sidebar = document.querySelector(".sidebar-menu");
