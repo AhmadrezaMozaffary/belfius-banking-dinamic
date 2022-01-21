@@ -127,7 +127,7 @@
                 <div class="statistics-left">
                     <p>in<span class="sta-amount income"><?= $assets->countOfMovements($_SESSION['userLogin']['id'], 1)  ?></span></p>
                     <p>out<span class="sta-amount out"><?= $assets->countOfMovements($_SESSION['userLogin']['id'], 0) ?></span></p>
-                    <p>all movements<span class="sta-amount interest"><?= $assets->countOfMovements($_SESSION['userLogin']['id']) ?></span></p>
+                    <p>interest<span class="sta-amount interest"><?= $assets->countOfMovements($_SESSION['userLogin']['id'], 1) * 0.045 ?></span></p>
                     <button class="btn sort-btn">&darr;sort</button>
                 </div>
 
