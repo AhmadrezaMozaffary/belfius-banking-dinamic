@@ -22,6 +22,7 @@ const passInputReset = document.querySelector(
 );
 const showPasswordCheckbox = document.querySelector(".show-password");
 const isValidEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+const isValidPass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 
 /*
  Showing ALerts
@@ -74,13 +75,13 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-// Open code submit form
 
+// Open code submit form
 const submitBtnRestModal = document.querySelector(".btn-open-code-input");
 submitBtnRestModal.addEventListener("click", (e) => {
   if (
     emailInputReset.value.match(isValidEmail) &&
-    passInputReset.value.length != 0
+    passInputReset.value.match(isValidPass)
   ) {
     resetPasswordCodeInput.classList.remove("hidden");
   } else if (
@@ -90,11 +91,19 @@ submitBtnRestModal.addEventListener("click", (e) => {
     e.preventDefault();
     emailInputReset.value = "";
     errorAlert("E-mail is not valid !");
+  } else if (
+    !passInputReset.value.match(isValidPass) &&
+    passInputReset.value.length != 0
+  ) {
+    e.preventDefault();
+    passInputReset.value = "";
   } else {
     e.preventDefault();
     errorAlert("Please fill out the form ⛔️");
   }
 });
+
+
 
 const userPanel = document.querySelector(".panel");
 const btnContainer = document.querySelector(".btn-container");
