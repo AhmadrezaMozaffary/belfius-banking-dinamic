@@ -75,7 +75,6 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-
 // Open code submit form
 const submitBtnRestModal = document.querySelector(".btn-open-code-input");
 submitBtnRestModal.addEventListener("click", (e) => {
@@ -102,8 +101,6 @@ submitBtnRestModal.addEventListener("click", (e) => {
     errorAlert("Please fill out the form ⛔️");
   }
 });
-
-
 
 const userPanel = document.querySelector(".panel");
 const btnContainer = document.querySelector(".btn-container");
@@ -192,6 +189,29 @@ secondSignupBtn.addEventListener("click", (e) => {
   if (!signupEmailVal.match(isValidEmail)) {
     e.preventDefault();
     errorAlert("E-mail is not valid !");
+  }
+});
+
+const signupPassword = document.querySelector(".signup-password");
+const changeBackgroundPassInput = (bgColor, txtColor = "white") => {
+  signupPassword.style.background = bgColor;
+  signupPassword.style.color = txtColor;
+};
+signupPassword.addEventListener("input", () => {
+  if (signupPassword.value.length == 0) {
+    changeBackgroundPassInput("var(--input-bg)", "#000");
+  } else if (
+    signupPassword.value.match(isValidPass) &&
+    signupPassword.value.length > 10
+  ) {
+    changeBackgroundPassInput("var(--single-primary-color)");
+  } else if (signupPassword.value.match(isValidPass)) {
+    changeBackgroundPassInput("orangered");
+  } else if (
+    !signupPassword.value.match(isValidPass) &&
+    signupPassword.value.length > 0
+  ) {
+    changeBackgroundPassInput("red");
   }
 });
 
