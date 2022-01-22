@@ -12,10 +12,14 @@ function getUserId()
     }
 }
 
-function getCurrentUser(): ?array
+function getCurrentUser(string $email = null): ?array
 {
     $user = new Assets;
-    $user = $user->getUserByEmail($_SESSION['userLogin']['email']);
+    if (is_null($email)) {
+        $user = $user->getUserByEmail($_SESSION['userLogin']['email']);
+    } else {
+        $user = $user->getUserByEmail($email);
+    }
     return $user;
 }
 
@@ -58,7 +62,7 @@ if (isset($_POST['action'])) {
         ];
         $resetPassword = new Auth;
         if ($resetPassword->isExistEmail($_SESSION['userData']['email'])) {
-            $currentUser = getCurrentUser();
+            $currentUser = getCurrentUser($_SESSION['userData']['email']);
             if (password_verify($_SESSION['userData']['password'], $currentUser['password'])) {
                 // the same key means : the new password equals to the older password and user will log in
                 $_SESSION['userLogin'] = $resetPassword->getUserByEmail($_SESSION['userData']['email']);

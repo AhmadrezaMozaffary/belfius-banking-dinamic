@@ -1,19 +1,3 @@
-
-// Countdown on Login
-// const countdownLogin = (msgPartOne, countdown, msgPartTwo = ".") => {
-//   let time = countdown;
-//   const loginMessage = alertify.success(
-//     `${msgPartOne} ${time} ${msgPartTwo}`,
-//     time,
-//     () => {
-//       clearInterval(countdownFunc);
-//     }
-//   );
-//   const countdownFunc = setInterval(() => {
-//     loginMessage.setContent(`${msgPartOne} ${--time} ${msgPartTwo}`);
-//   }, 1000);
-// };
-
 /**
  * jQuery Code Fore Ajax
  */
@@ -107,6 +91,7 @@ $(document).ready(function () {
         } else if (response["bool"] == true) {
           successAlert(response["msg"]);
         } else if (response['same'] == true) {
+          $('input.input-content-resetpassword-pass').attr('same', 'true');
           const countdownDuration = 5;
           const emoji = "😎" ? "😎" : ":D";
           countdownLogin(
