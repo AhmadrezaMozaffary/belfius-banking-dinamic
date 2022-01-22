@@ -8,6 +8,7 @@ const firstSignupBtn = document.querySelector(".first-signup-btn");
 const secondLoginBtn = document.querySelector(".second-login-btn");
 const secondSignupBtn = document.querySelector(".second-signup-btn");
 const signupSection = document.querySelector(".signup");
+const signupPassword = document.querySelector(".signup-password");
 const loginPage = document.querySelector(".login-page");
 const loginSection = document.querySelector(".login");
 const loginHeader = document.querySelector(".login-header");
@@ -23,6 +24,26 @@ const passInputReset = document.querySelector(
 const showPasswordCheckbox = document.querySelector(".show-password");
 const isValidEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 const isValidPass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+
+const checkPasswordStrength = (inputEl) => {
+  const changeBackgroundPassInput = (bgColor, txtColor = "white") => {
+    inputEl.style.background = bgColor;
+    inputEl.style.color = txtColor;
+  };
+  inputEl.addEventListener("input", () => {
+    if (inputEl.value.length == 0) {
+      changeBackgroundPassInput("var(--input-bg)", "#000");
+    } else if (inputEl.value.match(isValidPass) && inputEl.value.length > 10) {
+      changeBackgroundPassInput("var(--single-primary-color)");
+    } else if (inputEl.value.match(isValidPass)) {
+      changeBackgroundPassInput("orangered");
+    } else if (!inputEl.value.match(isValidPass) && inputEl.value.length > 0) {
+      changeBackgroundPassInput("red");
+    }
+  });
+};
+checkPasswordStrength(signupPassword);
+checkPasswordStrength(passInputReset);
 
 /*
  Showing ALerts
@@ -189,29 +210,6 @@ secondSignupBtn.addEventListener("click", (e) => {
   if (!signupEmailVal.match(isValidEmail)) {
     e.preventDefault();
     errorAlert("E-mail is not valid !");
-  }
-});
-
-const signupPassword = document.querySelector(".signup-password");
-const changeBackgroundPassInput = (bgColor, txtColor = "white") => {
-  signupPassword.style.background = bgColor;
-  signupPassword.style.color = txtColor;
-};
-signupPassword.addEventListener("input", () => {
-  if (signupPassword.value.length == 0) {
-    changeBackgroundPassInput("var(--input-bg)", "#000");
-  } else if (
-    signupPassword.value.match(isValidPass) &&
-    signupPassword.value.length > 10
-  ) {
-    changeBackgroundPassInput("var(--single-primary-color)");
-  } else if (signupPassword.value.match(isValidPass)) {
-    changeBackgroundPassInput("orangered");
-  } else if (
-    !signupPassword.value.match(isValidPass) &&
-    signupPassword.value.length > 0
-  ) {
-    changeBackgroundPassInput("red");
   }
 });
 

@@ -91,7 +91,7 @@ $(document).ready(function () {
         } else if (response["bool"] == true) {
           successAlert(response["msg"]);
         } else if (response['same'] == true) {
-          $('input.input-content-resetpassword-pass').attr('same', 'true');
+          $("#resetPasswordCodeForm").addClass("hidden");
           const countdownDuration = 5;
           const emoji = "😎" ? "😎" : ":D";
           countdownLogin(
