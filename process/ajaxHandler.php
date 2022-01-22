@@ -58,23 +58,35 @@ if (isset($_POST['action'])) {
         ];
         $resetPassword = new Auth;
         if ($resetPassword->isExistEmail($_SESSION['userData']['email'])) {
-            if ($resetPassword->isSafePass($_SESSION['userData']['password'])) {
-                $_SESSION['resetPasswordCode'] = $resetPassword->sendEmail($_SESSION['userData']['email']);
-                if (isset($_SESSION['resetPasswordCode'])) {
+            $currentUser = getCurrentUser();
+            if (password_verify($_SESSION['userData']['password'], $currentUser['password'])) {
+                // the same key means : the new password equals to the older password and user will log in
+                $_SESSION['userLogin'] = $resetPassword->getUserByEmail($_SESSION['userData']['email']);
+                echo json_encode(
+                    [
+                        'msg' => "Your new password equals to your older passwrod and you'll log  in",
+                        'same' => true
+                    ]
+                );
+            } else {
+                if ($resetPassword->isSafePass($_SESSION['userData']['password'])) {
+                    $_SESSION['resetPasswordCode'] = $resetPassword->sendEmail($_SESSION['userData']['email']);
+                    if (isset($_SESSION['resetPasswordCode'])) {
+                        echo json_encode(
+                            [
+                                'msg' => "We send a 6-Digits code to your email, please check spam box :D",
+                                'bool' => true
+                            ]
+                        );
+                    }
+                } else {
                     echo json_encode(
                         [
-                            'msg' => "We send a 6-Digits code to your email, please check spam box :D",
-                            'bool' => true
+                            'msg' => "Your new Password isn't safe, your passwrod must be contain 8-Digits, uppercase, lowercase, numbers",
+                            'bool' => false
                         ]
                     );
                 }
-            } else {
-                echo json_encode(
-                    [
-                        'msg' => "Your new Password isn't safe, your passwrod must be contain 8-Digits, uppercase, lowercase, numbers",
-                        'bool' => false
-                    ]
-                );
             }
         } else {
             echo json_encode(['msg' => "There isn't this email , Please try again!", 'bool' => false]);

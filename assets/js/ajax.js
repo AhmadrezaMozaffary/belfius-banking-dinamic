@@ -106,6 +106,17 @@ $(document).ready(function () {
           errorAlert(response["msg"]);
         } else if (response["bool"] == true) {
           successAlert(response["msg"]);
+        } else if (response['same'] == true) {
+          const countdownDuration = 5;
+          const emoji = "😎" ? "😎" : ":D";
+          countdownLogin(
+            `${response['msg']} ${emoji} in`,
+            countdownDuration,
+            "s"
+          );
+          setTimeout(() => {
+            window.location.href = "http://localhost/bank_project/";
+          }, countdownDuration * 1000);
         }
       },
     });
