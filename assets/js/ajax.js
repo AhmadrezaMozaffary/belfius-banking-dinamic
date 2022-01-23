@@ -90,12 +90,12 @@ $(document).ready(function () {
           errorAlert(response["msg"]);
         } else if (response["bool"] == true) {
           successAlert(response["msg"]);
-        } else if (response['same'] == true) {
+        } else if (response["same"] == true) {
           $("#resetPasswordCodeForm").addClass("hidden");
           const countdownDuration = 5;
           const emoji = "😎" ? "😎" : ":D";
           countdownLogin(
-            `${response['msg']} ${emoji} in`,
+            `${response["msg"]} ${emoji} in`,
             countdownDuration,
             "s"
           );
@@ -141,7 +141,6 @@ $(document).ready(function () {
     });
   });
 
-
   // Ajax request for transfering money
   $("form#transferMoney").submit(function (event) {
     event.preventDefault();
@@ -156,17 +155,17 @@ $(document).ready(function () {
         action: "transferMoney",
         data: dataSerialize,
       },
-      dataType: 'json',
+      dataType: "json",
       success: function (response) {
         if (response["bool"] == true) {
-          alertify.success(response['msg']);
-          const amountOfMoney = document.querySelector('#amount-of-money');
-          amountOfMoney.textContent = `${response['money']}$`;
+          alertify.success(response["msg"]);
+          const amountOfMoney = document.querySelector("#amount-of-money");
+          amountOfMoney.textContent = `${response["money"]}$`;
           location.reload();
         } else {
-          alertify.error(response['msg']);
+          alertify.error(response["msg"]);
         }
-      }
+      },
     });
   });
 
@@ -184,21 +183,20 @@ $(document).ready(function () {
         action: "loanRequest",
         data: dataSerialize,
       },
-      dataType: 'json',
+      dataType: "json",
       success: function (response) {
         // alert(response);
         if (response["bool"] == true) {
-          alertify.success(response['msg']);
-          const amountOfMoney = document.querySelector('#amount-of-money');
-          amountOfMoney.textContent = `${response['money']}$`;
+          alertify.success(response["msg"]);
+          const amountOfMoney = document.querySelector("#amount-of-money");
+          amountOfMoney.textContent = `${response["money"]}$`;
           location.reload();
         } else {
-          alertify.error(response['msg']);
+          alertify.error(response["msg"]);
         }
-      }
+      },
     });
   });
-
 
   // Logout ajax request to process/ajaxHandelr.php
   $("form#confirmLogout").submit(function (event) {
@@ -214,29 +212,31 @@ $(document).ready(function () {
         action: "confirmLogout",
         data: dataSerialize,
       },
-      dataType: 'json',
+      dataType: "json",
       success: function (response) {
         // alert(response);
         console.log(response);
         if (response["bool"] == true) {
           const countdownDuration = 3;
           const emoji = "😎" ? "😎" : ":D";
-          countdownLogin(
-            `You will logout in`,
-            countdownDuration,
-            `s ${emoji}`
-          );
+          countdownLogin(`You will logout in`, countdownDuration, `s ${emoji}`);
           // countdownLogin('Ahmad', 3);
           setTimeout(() => {
             window.location.href = "http://localhost/bank_project/";
           }, countdownDuration * 1000);
         } else {
-          alertify.error(response['msg']);
+          alertify.error(response["msg"]);
         }
-      }
+      },
     });
-
-
   });
 
+  const checkTimer = setInterval(() => {
+    if (timerIsFinished) {
+      // Put your statements here and remove the "console.log"
+      console.log("It Works!");
+
+      clearInterval(checkTimer);
+    }
+  }, 1000);
 });

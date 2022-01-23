@@ -6,6 +6,7 @@ const allMovementsValue = document.querySelectorAll(".n-money");
 const totalIncome = document.querySelector(".income");
 const totalOut = document.querySelector(".out");
 const totalIntrest = document.querySelector(".interest");
+let timerIsFinished = false;
 
 //Calculate current date and time and add to DOM based on locale
 // Get client locale
@@ -57,6 +58,9 @@ const logoutTimer = (min) => {
     }
     time--;
     lableTimer.textContent = `${min} : ${sec}`;
+    if (min == "00" && sec == "00") {
+      timerIsFinished = true;
+    }
   };
   tick();
   const timer = setInterval(tick, 1000);
