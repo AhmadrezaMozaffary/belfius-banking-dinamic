@@ -129,6 +129,7 @@
                     <p>out<span class="sta-amount out"><?= $assets->countOfMovements($_SESSION['userLogin']['id'], 0) ?? 0 ?></span></p>
                     <p>interest<span class="sta-amount interest"><?= $assets->countOfMovements($_SESSION['userLogin']['id'], 1) * 0.045 ?></span></p>
                     <button class="btn sort-btn">&darr;sort</button>
+                    <button class="btn sort-btn pdf-btn">PDF</button>
                 </div>
 
                 <!-- STATISTICS RIGHT -->
@@ -154,7 +155,9 @@
 
     <!-- Alertify Library -->
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-    <!-- Main JS -->
+    <!-- HTML2PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Main JS files -->
     <script src="assets/js/countDowner.js"></script>
     <script src="assets/js/app-index.js"></script>
     <!-- AJAX Handler -->

@@ -104,3 +104,31 @@ allMovementsValue.forEach((movement) => addCurrencySign(movement));
 addCurrencySign(totalIncome);
 addCurrencySign(totalOut);
 addCurrencySign(totalIntrest);
+
+// Get "summary.pdf" with HTML2PDF.js
+window.addEventListener("load", () => {
+  document.querySelector(".pdf-btn").addEventListener("click", () => {
+    const printElContainer = document.querySelector(".panel");
+
+    const opt = {
+      margin: 1,
+      filename: "summary.pdf",
+      jsPDF: { format: "letter", orientation: "portrait" },
+    };
+
+    document.querySelector(".panel-tools").classList.add("hidden");
+    document.querySelector(".panel-statistics").classList.add("hidden");
+    document.querySelector(".open-sidebar").classList.add("hidden");
+    document.querySelector(".left-history").style.width = "100%";
+
+    // New Promise-based usage:
+    html2pdf().set(opt).from(printElContainer).save();
+
+    setTimeout(() => {
+      document.querySelector(".panel-tools").classList.remove("hidden");
+      document.querySelector(".panel-statistics").classList.remove("hidden");
+      document.querySelector(".open-sidebar").classList.remove("hidden");
+      document.querySelector(".left-history").style.width = "60%";
+    }, 1);
+  });
+});
