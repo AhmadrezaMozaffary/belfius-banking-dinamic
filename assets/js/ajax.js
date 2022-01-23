@@ -214,13 +214,11 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
-        // alert(response);
         console.log(response);
         if (response["bool"] == true) {
           const countdownDuration = 3;
           const emoji = "😎" ? "😎" : ":D";
           countdownLogin(`You will logout in`, countdownDuration, `s ${emoji}`);
-          // countdownLogin('Ahmad', 3);
           setTimeout(() => {
             window.location.href = "http://localhost/bank_project/";
           }, countdownDuration * 1000);
@@ -233,9 +231,27 @@ $(document).ready(function () {
 
   const checkTimer = setInterval(() => {
     if (timerIsFinished) {
-      // Put your statements here and remove the "console.log"
-      console.log("It Works!");
-
+      // AJAX request to logingout automatically after a certain time
+      $.ajax({
+        type: "POST",
+        url: "process/ajaxHandler.php",
+        data: {
+          action: 'autoLogout',
+          data: true
+        },
+        dataType: "json",
+        success: function (response) {
+          if (response['bool']) {
+            const countdownDuration = 3;
+            const emoji = "😎" ? "😎" : ":D";
+            countdownLogin(`${response['msg']}`, countdownDuration, `s ${emoji}`);
+            setTimeout(() => {
+              window.location.href = "http://localhost/bank_project/";
+            }, countdownDuration * 1000);
+          }
+        }
+      });
+      
       clearInterval(checkTimer);
     }
   }, 1000);

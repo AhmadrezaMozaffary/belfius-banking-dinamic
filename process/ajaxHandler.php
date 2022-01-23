@@ -198,4 +198,16 @@ if (isset($_POST['action'])) {
             echo json_encode(['bool' => false, 'msg' => "Your email isn't currect!"]);
         }
     }
+
+    // auto logout based on ajax request
+    if ($_POST['action'] == 'autoLogout') {
+        $authentication = new Auth;
+        if ($_POST['data']) {
+            $authentication->lougout();
+            echo json_encode([
+                'msg' => "You'll logout in",
+                'bool' => true
+            ]);
+        }
+    }
 }
