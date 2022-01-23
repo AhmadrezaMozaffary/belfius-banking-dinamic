@@ -102,7 +102,7 @@
     <script src="assets/js/countDowner.js"></script>
     <script src="assets/js/app.js"></script>
     <!-- AJAX Handler -->
-    <script src="assets/js/ajax.js"></script>
+    <script src="assets/js/ajax-auth.js"></script>
 
 </body>
 

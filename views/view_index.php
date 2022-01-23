@@ -161,7 +161,7 @@
     <script src="assets/js/countDowner.js"></script>
     <script src="assets/js/app-index.js"></script>
     <!-- AJAX Handler -->
-    <script src="assets/js/ajax.js"></script>
+    <script src="assets/js/ajax-index.js"></script>
 
 </body>
 
